@@ -10,9 +10,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NameGeneratorConsole", "Nam
 		{3F9B05B4-359E-41C8-AB79-6578F79A4345} = {3F9B05B4-359E-41C8-AB79-6578F79A4345}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2ACC6F44-B61F-4E3E-B771-08A8499FACFB}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameGeneratorTest", "NameGeneratorTest\NameGeneratorTest\NameGeneratorTest.csproj", "{C88D4909-553D-495A-8130-FB1B4FD9C2FD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F9B05B4-359E-41C8-AB79-6578F79A4345} = {3F9B05B4-359E-41C8-AB79-6578F79A4345}
 	EndProjectSection
 EndProject
 Global
@@ -29,6 +29,10 @@ Global
 		{FF3FFED0-ADBA-46B4-9467-6E6C91E0955E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF3FFED0-ADBA-46B4-9467-6E6C91E0955E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF3FFED0-ADBA-46B4-9467-6E6C91E0955E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C88D4909-553D-495A-8130-FB1B4FD9C2FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C88D4909-553D-495A-8130-FB1B4FD9C2FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C88D4909-553D-495A-8130-FB1B4FD9C2FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C88D4909-553D-495A-8130-FB1B4FD9C2FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

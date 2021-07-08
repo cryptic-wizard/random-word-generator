@@ -2,5 +2,9 @@
 bin/
 obj/
 
+# Specflow
+*.feature.cs
+TestResults/
+
 # User Settings
 .vs/
