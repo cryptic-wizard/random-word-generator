@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\NameGeneratorLibrary\NameGeneratorLibrary.csproj" />
+    <ProjectReference Include="..\NameGeneratorLibrary\NameGeneratorLibrary.csproj" />
   </ItemGroup>
 
 </Project>

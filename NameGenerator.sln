@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NameGeneratorConsole", "Nam
 		{3F9B05B4-359E-41C8-AB79-6578F79A4345} = {3F9B05B4-359E-41C8-AB79-6578F79A4345}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameGeneratorTest", "NameGeneratorTest\NameGeneratorTest\NameGeneratorTest.csproj", "{C88D4909-553D-495A-8130-FB1B4FD9C2FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameGeneratorTest", "NameGeneratorTest\NameGeneratorTest.csproj", "{C88D4909-553D-495A-8130-FB1B4FD9C2FD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3F9B05B4-359E-41C8-AB79-6578F79A4345} = {3F9B05B4-359E-41C8-AB79-6578F79A4345}
 	EndProjectSection
