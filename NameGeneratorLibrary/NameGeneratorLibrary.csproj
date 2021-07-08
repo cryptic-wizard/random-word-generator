@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>NameGeneratorLibrary</AssemblyName>
+    <RootNamespace>NameGeneratorLibrary</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="LanguageFiles\*\*.txt" />
+  </ItemGroup>
+
+</Project>
