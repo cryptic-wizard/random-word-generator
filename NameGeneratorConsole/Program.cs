@@ -8,17 +8,17 @@ namespace NameGeneratorConsole
     {
         static void Main(string[] args)
         {
-            NameGenerator nameGenerator = new NameGenerator();
-            NameGenerator.WordType[] format = { NameGenerator.WordType.adv, NameGenerator.WordType.adj, NameGenerator.WordType.noun };
-            List<string> names = nameGenerator.GetNames(format, 10);
-            string name = nameGenerator.GetName(format);
+            WordGenerator wordGenerator = new WordGenerator();
+            WordGenerator.PartOfSpeech partOfSpeech = WordGenerator.PartOfSpeech.noun;
+            List<string> words = wordGenerator.GetWords(partOfSpeech, 10);
+            string word = wordGenerator.GetWord(partOfSpeech);
 
-            foreach(string s in names)
+            foreach(string s in words)
             {
                 Console.WriteLine(s);
             }
 
-            Console.WriteLine(name);
+            Console.WriteLine(word);
         }
     }
 }
