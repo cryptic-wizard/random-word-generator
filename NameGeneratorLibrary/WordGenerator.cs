@@ -14,7 +14,7 @@ namespace NameGeneratorLibrary
 		public PartOfSpeech? partOfSpeech;
 
 		// Private Members
-		Random rnd = new Random();
+		private Random rnd = new Random();
 
 		// Enums
 		public enum Language
@@ -30,11 +30,20 @@ namespace NameGeneratorLibrary
         }
 
 		// Constructors
+		/// <summary>
+		/// Creates a new WordGenerator instance
+		/// </summary>
+		/// <param name="language"></param>
 		public WordGenerator(Language language = Language.EN)
         {
 			this.language = language;
         }
 
+		/// <summary>
+		/// Gets a list of possible parts of speech of a word
+		/// </summary>
+		/// <param name="word"> </param>
+		/// <returns> a list of parts of speech or null if word not found </returns>
 		public List<PartOfSpeech> GetPartsOfSpeech(string word)
         {
 			List<string> words;
@@ -60,6 +69,10 @@ namespace NameGeneratorLibrary
 			}
         }
 
+		/// <summary>
+		/// Gets a word with the field member part of speech
+		/// </summary>
+		/// <returns> a word or null if this.partOfSpeech is null </returns>
 		public string GetWord()
         {
 			if(partOfSpeech == null)
@@ -73,6 +86,11 @@ namespace NameGeneratorLibrary
 			return toReturn;
 		}
 
+		/// <summary>
+		/// Gets a word with a specified part of speech
+		/// </summary>
+		/// <param name="partOfSpeech"></param>
+		/// <returns> a word </returns>
 		public string GetWord(PartOfSpeech partOfSpeech)
         {
 			List<string> words = GetWordList(partOfSpeech);
@@ -81,6 +99,11 @@ namespace NameGeneratorLibrary
 			return toReturn;
 		}
 
+		/// <summary>
+		/// Gets a list of words with this.partOfSpeech
+		/// </summary>
+		/// <param name="quantity"> number of words to return </param>
+		/// <returns> words or null if this.partOfSpeech is null </returns>
 		public List<string> GetWords(int quantity)
 		{
 			if (partOfSpeech == null)
@@ -99,6 +122,12 @@ namespace NameGeneratorLibrary
 			return toReturn;
 		}
 
+		/// <summary>
+		/// Gets a list of words with the specified part of speech
+		/// </summary>
+		/// <param name="partOfSpeech"></param>
+		/// <param name="quantity"> number of words to return </param>
+		/// <returns> words </returns>
 		public List<string> GetWords(PartOfSpeech partOfSpeech, int quantity)
         {
 			List<string> toReturn = new List<string>();
@@ -112,6 +141,11 @@ namespace NameGeneratorLibrary
 			return toReturn;
 		}
 
+		/// <summary>
+		/// Reads a word list with the specified part of speech from embedded resources
+		/// </summary>
+		/// <param name="partOfSpeech"></param>
+		/// <returns> a list of all words with the specified part of speech </returns>
 		private List<string> GetWordList(PartOfSpeech partOfSpeech)
         {
 			List<string> words = new List<string>();

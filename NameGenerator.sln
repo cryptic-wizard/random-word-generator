@@ -10,9 +10,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NameGeneratorConsole", "Nam
 		{3F9B05B4-359E-41C8-AB79-6578F79A4345} = {3F9B05B4-359E-41C8-AB79-6578F79A4345}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameGeneratorTest", "NameGeneratorTest\NameGeneratorTest.csproj", "{C88D4909-553D-495A-8130-FB1B4FD9C2FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NameGeneratorTest", "NameGeneratorTest\NameGeneratorTest.csproj", "{C88D4909-553D-495A-8130-FB1B4FD9C2FD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3F9B05B4-359E-41C8-AB79-6578F79A4345} = {3F9B05B4-359E-41C8-AB79-6578F79A4345}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0F8BA42-1754-4744-8696-1B5B69D9A9CB}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
 Global

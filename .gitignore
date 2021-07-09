@@ -5,6 +5,7 @@ obj/
 # Specflow
 *.feature.cs
 TestResults/
+LivingDoc.html
 
 # User Settings
 .vs/

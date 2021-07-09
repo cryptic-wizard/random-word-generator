@@ -7,7 +7,7 @@ on:
     #branches: [ main ]
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +21,14 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
+    - name: Run Tests
       run: dotnet test --no-build --verbosity normal
+    - name: Install Specflow LivingDoc Tool
+      run: dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
+    - name: Generate Specflow Test Report
+      run: livingdoc test-assembly NameGeneratorTest/bin/Debug/netcoreapp3.1/NameGeneratorTest.dll -t NameGeneratorTest/bin/Debug/netcoreapp3.1/TestExecution.json
+    - name: Publish Test Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: NameGeneratorTest/bin/Debug/netcoreapp3.1/LivingDoc.html

@@ -24,6 +24,8 @@ namespace NameGeneratorTest.Steps
             _scenarioContext = scenarioContext;
         }
 
+        #region ScenarioSteps
+
         [BeforeScenario]
         public void BeforeScenario()
         {
@@ -38,6 +40,8 @@ namespace NameGeneratorTest.Steps
             partsOfSpeech = null;
             wordGenerator.partOfSpeech = null;
         }
+
+        #endregion
 
         #region GivenSteps
 
@@ -105,8 +109,8 @@ namespace NameGeneratorTest.Steps
             }
         }
 
-        [Then(@"the part of speech is (.*)")]
-        public void ThenThePartOfSpeechIsX(WordGenerator.PartOfSpeech partOfSpeech)
+        [Then(@"the parts of speech contains (.*)")]
+        public void ThenThePartsOfSpeechContainsX(WordGenerator.PartOfSpeech partOfSpeech)
         {
             Assert.IsNotNull(partsOfSpeech);
             Assert.Contains(partOfSpeech, partsOfSpeech);

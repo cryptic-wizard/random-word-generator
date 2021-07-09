@@ -58,7 +58,7 @@ Scenario: Get Multiple Words With No Global Part Of Speech
 
 Scenario Outline: Get Part Of Speech
 	When I get the parts of speech of <word>
-	Then the part of speech is <partOfSpeech>
+	Then the parts of speech contains <partOfSpeech>
 
 	Examples:
 	| word    | partOfSpeech |
