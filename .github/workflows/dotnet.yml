@@ -30,5 +30,5 @@ jobs:
     - name: Publish Test Report
       uses: actions/upload-artifact@v2
       with:
-        name: test-results
-        path: NameGeneratorTest/bin/Debug/netcoreapp3.1/LivingDoc.html
+        name: TestReport
+        path: LivingDoc.html
