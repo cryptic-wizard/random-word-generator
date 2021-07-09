@@ -11,7 +11,10 @@ namespace NameGeneratorLibrary
 	{
 		// Public Members
 		public Language language;
-		public PartOfSpeech partOfSpeech;
+		public PartOfSpeech? partOfSpeech;
+
+		// Private Members
+		Random rnd = new Random();
 
 		// Enums
 		public enum Language
@@ -32,9 +35,10 @@ namespace NameGeneratorLibrary
 			this.language = language;
         }
 
-		public PartOfSpeech? GetPartOfSpeech(string word)
+		public List<PartOfSpeech> GetPartsOfSpeech(string word)
         {
 			List<string> words;
+			List<PartOfSpeech> partsOfSpeech = new List<PartOfSpeech>();
 
 			foreach(PartOfSpeech partOfSpeech in Enum.GetValues(typeof(PartOfSpeech)).Cast<PartOfSpeech>().ToList())
             {
@@ -42,26 +46,62 @@ namespace NameGeneratorLibrary
 
 				if(words.Contains(word))
                 {
-					return partOfSpeech;
+					partsOfSpeech.Add(partOfSpeech);
                 }
             }
 
-			return null;
+			if(partsOfSpeech.Count != 0)
+            {
+				return partsOfSpeech;
+            }
+			else
+            {
+				return null;
+			}
         }
+
+		public string GetWord()
+        {
+			if(partOfSpeech == null)
+            {
+				return null;
+            }
+
+			List<string> words = GetWordList((PartOfSpeech)partOfSpeech);
+			string toReturn = words[rnd.Next(words.Count)];
+
+			return toReturn;
+		}
 
 		public string GetWord(PartOfSpeech partOfSpeech)
         {
-			Random rnd = new Random();
 			List<string> words = GetWordList(partOfSpeech);
 			string toReturn = words[rnd.Next(words.Count)];
 
 			return toReturn;
 		}
 
-        public List<string> GetWords(PartOfSpeech partOfSpeech, int quantity)
+		public List<string> GetWords(int quantity)
+		{
+			if (partOfSpeech == null)
+			{
+				return null;
+			}
+
+			List<string> toReturn = new List<string>();
+			List<string> words = GetWordList((PartOfSpeech)partOfSpeech);
+
+			for (int i = 0; i < quantity; i++)
+			{
+				toReturn.Add(words[rnd.Next(words.Count)]);
+			}
+
+			return toReturn;
+		}
+
+		public List<string> GetWords(PartOfSpeech partOfSpeech, int quantity)
         {
 			List<string> toReturn = new List<string>();
-			Random rnd = new Random();
 			List<string> words = GetWordList(partOfSpeech);
 
 			for(int i = 0; i < quantity; i++)

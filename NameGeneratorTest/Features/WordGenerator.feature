@@ -1,6 +1,6 @@
 ﻿Feature: WordGenerator
 
-Scenario Outline: Get a Single Word
+Scenario Outline: Get a Single Word With Part Of Speech
 	When I get a <partOfSpeech>
 	Then I have a <partOfSpeech>
 
@@ -10,7 +10,22 @@ Scenario Outline: Get a Single Word
 	| adj          |
 	| adv          |
 
-Scenario Outline: Get Multiple Words
+Scenario Outline: Get a Single Word With Global Part Of Speech
+	Given I set the part of speech to <partOfSpeech>
+	When I get a word
+	Then I have a <partOfSpeech>
+
+	Examples:
+	| partOfSpeech |
+	| noun         |
+	| adj          |
+	| adv          |
+
+Scenario: Get a Single Word With No Global Part Of Speech
+	When I get a word
+	Then I do not have a word
+
+Scenario Outline: Get Multiple Words With Part Of Speech
 	When I get <x> <partOfSpeech>
 	Then I have <x> <partOfSpeech>
 
@@ -23,9 +38,26 @@ Scenario Outline: Get Multiple Words
 	| 2 | adv          |
 	| 5 | adv          |
 
+Scenario Outline: Get Multiple Words With Global Part Of Speech
+	Given I set the part of speech to <partOfSpeech>
+	When I get <x> words
+	Then I have <x> <partOfSpeech>
 
-Scenario Outline: Get Part of Speech
-	When I get the part of speech of <word>
+	Examples:
+	| x | partOfSpeech |
+	| 2 | noun         |
+	| 5 | noun         |
+	| 2 | adj          |
+	| 5 | adj          |
+	| 2 | adv          |
+	| 5 | adv          |
+
+Scenario: Get Multiple Words With No Global Part Of Speech
+	When I get 3 words
+	Then I do not have words
+
+Scenario Outline: Get Part Of Speech
+	When I get the parts of speech of <word>
 	Then the part of speech is <partOfSpeech>
 
 	Examples:

@@ -9,14 +9,14 @@ namespace NameGeneratorTest.Steps
     [Binding]
     public sealed class WordGeneratorStepDefinitions
     {
-
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
-
         private readonly ScenarioContext _scenarioContext;
+
+        // Scenario Context Variables
         private WordGenerator wordGenerator;
         private List<string> words;
         private string word;
-        private WordGenerator.PartOfSpeech? partOfSpeech;
+        private List<WordGenerator.PartOfSpeech> partsOfSpeech;
 
 
         public WordGeneratorStepDefinitions(ScenarioContext scenarioContext)
@@ -35,15 +35,38 @@ namespace NameGeneratorTest.Steps
         {
             words = null;
             word = null;
-            partOfSpeech = null;
+            partsOfSpeech = null;
+            wordGenerator.partOfSpeech = null;
         }
 
+        #region GivenSteps
+
+        [Given(@"I set the part of speech to (.*)")]
+        public void GivenISetThePartOfSpeechToX(WordGenerator.PartOfSpeech partOfSpeech)
+        {
+            wordGenerator.partOfSpeech = partOfSpeech;
+        }
+
+        #endregion
+
         #region WhenSteps
+
+        [When("I get a word")]
+        public void WhenIGetAWord()
+        {
+            word = wordGenerator.GetWord();
+        }
 
         [When("I get a (.*)")]
         public void WhenIGetAWord(WordGenerator.PartOfSpeech partOfSpeech)
         {
             word = wordGenerator.GetWord(partOfSpeech);
+        }
+
+        [When("I get (\\d+) words")]
+        public void WhenIGetXWords(int quantity)
+        {
+            words = wordGenerator.GetWords(quantity);
         }
 
         [When("I get (\\d+) (.*)")]
@@ -52,10 +75,10 @@ namespace NameGeneratorTest.Steps
             words = wordGenerator.GetWords(partOfSpeech, quantity);
         }
 
-        [When(@"I get the part of speech of (.*)")]
-        public void WhenIGetThePartOfSpeechOfX(string word)
+        [When(@"I get the parts of speech of (.*)")]
+        public void WhenIGetThePartsOfSpeechOfX(string word)
         {
-            partOfSpeech = wordGenerator.GetPartOfSpeech(word);
+            partsOfSpeech = wordGenerator.GetPartsOfSpeech(word);
         }
 
         #endregion
@@ -66,8 +89,8 @@ namespace NameGeneratorTest.Steps
         public void ThenIHaveAWord(WordGenerator.PartOfSpeech partOfSpeech)
         {
             Assert.IsNotNull(word);
-            this.partOfSpeech = wordGenerator.GetPartOfSpeech(word);
-            Assert.AreEqual(partOfSpeech, this.partOfSpeech);
+            partsOfSpeech = wordGenerator.GetPartsOfSpeech(word);
+            Assert.Contains(partOfSpeech, partsOfSpeech);
         }
 
         [Then("I have (\\d+) (.*)")]
@@ -78,16 +101,29 @@ namespace NameGeneratorTest.Steps
 
             foreach(string word in words)
             {
-                Assert.AreEqual(partOfSpeech, wordGenerator.GetPartOfSpeech(word));
+                Assert.Contains(partOfSpeech, wordGenerator.GetPartsOfSpeech(word), "Word = " + word.ToString());
             }
         }
 
         [Then(@"the part of speech is (.*)")]
         public void ThenThePartOfSpeechIsX(WordGenerator.PartOfSpeech partOfSpeech)
         {
-            Assert.IsNotNull(this.partOfSpeech);
-            Assert.AreEqual(partOfSpeech, this.partOfSpeech);
+            Assert.IsNotNull(partsOfSpeech);
+            Assert.Contains(partOfSpeech, partsOfSpeech);
         }
+
+        [Then(@"I do not have a word")]
+        public void ThenIDoNotHaveAWord()
+        {
+            Assert.IsNull(word);
+        }
+
+        [Then(@"I do not have words")]
+        public void ThenIDoNotHaveWords()
+        {
+            Assert.IsNull(words);
+        }
+
 
         #endregion
     }
