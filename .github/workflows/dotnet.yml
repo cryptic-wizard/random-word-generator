@@ -21,12 +21,24 @@ jobs:
       run: dotnet restore
     - name: Build Project
       run: dotnet build --no-restore
+    - name: Upload DLLs
+      uses: actions/upload-artifact@v2
+      with:
+        name: DLLs
+        path: NameGenerator*.dll
 
   Test:
     needs: Build
     runs-on: ubuntu-latest
 
     steps:
+    - name: Download DLLs
+    - uses: actions/download-artifact@v2
+      name: DLLs
+    - name: Setup .NET Core Environment
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x'
     - name: Run Tests
       run: dotnet test --no-build --verbosity normal
     - name: Install Specflow LivingDoc Tool
