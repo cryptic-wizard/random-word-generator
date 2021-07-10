@@ -23,13 +23,13 @@ jobs:
       run: dotnet build --no-restore
     - name: Run Tests
       run: dotnet test --no-build --verbosity normal
-      env:
-        FILEPATH: "NameGeneratorTest/bin/Debug/netcoreapp3.1"
 
     - name: Generate Specflow Test Report
+      env:
+        TEST_RESULTS_PATH: "NameGeneratorTest/bin/Debug/netcoreapp3.1"
       run: |
         dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
-        livingdoc test-assembly ${FILEPATH}/NameGeneratorTest.dll -t ${FILEPATH}/TestExecution.json
+        livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json
         mv LivingDoc.html TestReport_${GITHUB_RUN_NUMBER}.html
     - name: Publish Specflow Test Report
       uses: actions/upload-artifact@v2
