@@ -30,7 +30,7 @@ jobs:
       run: |
         dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
         livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json
-        mv "LivingDoc.html" "${GITHUB_RUN_NUMBER}_TestReport.html"
+        cp LivingDoc.html ${GITHUB_RUN_NUMBER}_TestReport.html
     - name: Publish Specflow Test Report
       uses: actions/upload-artifact@v2
       with:
