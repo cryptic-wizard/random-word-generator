@@ -17,18 +17,36 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.x'
-    - name: Restore
+    - name: Restore Dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build Project
       run: dotnet build --no-restore
+
+  Test:
+    needs: Build
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Run Tests
       run: dotnet test --no-build --verbosity normal
     - name: Install Specflow LivingDoc Tool
       run: dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
     - name: Generate Specflow Test Report
       run: livingdoc test-assembly NameGeneratorTest/bin/Debug/netcoreapp3.1/NameGeneratorTest.dll -t NameGeneratorTest/bin/Debug/netcoreapp3.1/TestExecution.json
+    - name: Generate Timestamp
+      id: time
+      uses: nanzm/get-time-action@v1.1
+      with:
+          timeZone: -5
+          format: 'YYYY-MM-DD-HH-mm-ss'
+    - name: Timestamp Specflow Test Report
+      env:
+        TIMESTAMP: "${{ steps.time.outputs.time }}"
+      run: mv LivingDoc.html TestReport_$TIME.html
     - name: Publish Test Report
+      env:
+        TIMESTAMP: "${{ steps.time.outputs.time }}"
       uses: actions/upload-artifact@v2
       with:
-        name: TestReport.html
-        path: LivingDoc.html
+        name: TestReport_$TIME
+        path: TestReport.html
