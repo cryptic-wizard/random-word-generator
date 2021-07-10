@@ -25,7 +25,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: DLLs
-        path: path/**/NameGenerator*.dll
+        path: path/**/**/**/**/NameGenerator*.dll
 
   Test:
     needs: Build
