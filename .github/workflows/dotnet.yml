@@ -41,6 +41,8 @@ jobs:
         TIMESTAMP: "${{ steps.time.outputs.time }}"
       run: mv LivingDoc.html TestReport_${TIME}.html
     - name: Publish Specflow Test Report
+      env:
+        TIMESTAMP: "${{ steps.time.outputs.time }}"
       uses: actions/upload-artifact@v2
       with:
         name: TestReport_${TIME}
