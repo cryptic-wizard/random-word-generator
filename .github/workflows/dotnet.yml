@@ -7,11 +7,11 @@ on:
     #branches: [ main ]
 
 jobs:
-  Build:
+  BuildAndTest:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout Code
       uses: actions/checkout@v2
     - name: Setup .NET Core Environment
       uses: actions/setup-dotnet@v1
@@ -21,31 +21,15 @@ jobs:
       run: dotnet restore
     - name: Build Project
       run: dotnet build --no-restore
-    - name: Upload DLLs
-      uses: actions/upload-artifact@v2
-      with:
-        name: DLLs
-        path: path/**/**/**/**/NameGenerator*.dll
-
-  Test:
-    needs: Build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Download DLLs
-      uses: actions/download-artifact@v2
-      with:
-        name: DLLs
-    - name: Setup .NET Core Environment
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '3.1.x'
     - name: Run Tests
       run: dotnet test --no-build --verbosity normal
     - name: Install Specflow LivingDoc Tool
       run: dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
     - name: Generate Specflow Test Report
-      run: livingdoc test-assembly NameGeneratorTest/bin/Debug/netcoreapp3.1/NameGeneratorTest.dll -t NameGeneratorTest/bin/Debug/netcoreapp3.1/TestExecution.json
+      env:
+        FILEPATH: "NameGeneratorTest/bin/Debug/netcoreapp3.1"
+      run: livingdoc test-assembly $FILEPATH/NameGeneratorTest.dll -t FILEPATH/TestExecution.json
+
     - name: Generate Timestamp
       id: time
       uses: nanzm/get-time-action@v1.1
@@ -56,7 +40,7 @@ jobs:
       env:
         TIMESTAMP: "${{ steps.time.outputs.time }}"
       run: mv LivingDoc.html TestReport_$TIME.html
-    - name: Publish Test Report
+    - name: Publish Specflow Test Report
       env:
         TIMESTAMP: "${{ steps.time.outputs.time }}"
       uses: actions/upload-artifact@v2
