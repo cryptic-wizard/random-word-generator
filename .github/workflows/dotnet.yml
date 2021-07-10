@@ -34,7 +34,8 @@ jobs:
     steps:
     - name: Download DLLs
     - uses: actions/download-artifact@v2
-      name: DLLs
+      with:
+        name: DLLs
     - name: Setup .NET Core Environment
       uses: actions/setup-dotnet@v1
       with:
