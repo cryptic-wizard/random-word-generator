@@ -28,7 +28,7 @@ jobs:
     - name: Generate Specflow Test Report
       env:
         FILEPATH: "NameGeneratorTest/bin/Debug/netcoreapp3.1"
-      run: livingdoc test-assembly $FILEPATH/NameGeneratorTest.dll -t FILEPATH/TestExecution.json
+      run: livingdoc test-assembly ${FILEPATH}/NameGeneratorTest.dll -t FILEPATH/TestExecution.json
 
     - name: Generate Timestamp
       id: time
