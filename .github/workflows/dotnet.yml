@@ -36,7 +36,7 @@ jobs:
         TIME: "${{ steps.time.outputs.time }}"
       run: |
         dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
-        livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json --title "NameGeneratorTestReport"
+        livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll --title "NameGeneratorTestReport" -t ${TEST_RESULTS_PATH}/TestExecution.json
     - name: Publish Specflow Test Report
       env:
         TIME: "${{ steps.time.outputs.time }}"
