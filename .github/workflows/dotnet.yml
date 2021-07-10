@@ -36,10 +36,11 @@ jobs:
         TIME: "${{ steps.time.outputs.time }}"
       run: |
         dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
-        livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json
-        #mv LivingDoc.html TestReport_${TIME}.html --verbose //Rename is successful but the artifact does not exist
+        livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json --title "NameGeneratorTestReport"
     - name: Publish Specflow Test Report
+      env:
+        TIME: "${{ steps.time.outputs.time }}"
       uses: actions/upload-artifact@v2
       with:
-        name: TestReport_${TIME}
-        path: LivingDoc.html
+        name: NameGeneratorTestReport
+        path: NameGeneratorTestReport.html
