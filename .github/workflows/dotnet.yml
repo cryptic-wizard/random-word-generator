@@ -24,23 +24,14 @@ jobs:
     - name: Run Tests
       run: dotnet test --no-build --verbosity normal
 
-    - name: Generate Timestamp
-      id: time
-      uses: nanzm/get-time-action@v1.1
-      with:
-        timeZone: -5
-        format: 'YYYY-MM-DD-HH-mm-ss'
     - name: Generate Specflow Test Report
       env:
         TEST_RESULTS_PATH: "NameGeneratorTest/bin/Debug/netcoreapp3.1"
-        TIME: "${{ steps.time.outputs.time }}"
       run: |
         dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
-        livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll --title "NameGeneratorTestReport" -t ${TEST_RESULTS_PATH}/TestExecution.json
+        livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json
     - name: Publish Specflow Test Report
-      env:
-        TIME: "${{ steps.time.outputs.time }}"
       uses: actions/upload-artifact@v2
       with:
         name: NameGeneratorTestReport
-        path: NameGeneratorTestReport.html
+        path: LivingDoc.html
