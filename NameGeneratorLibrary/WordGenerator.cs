@@ -14,7 +14,7 @@ namespace NameGeneratorLibrary
 		public PartOfSpeech? partOfSpeech;
 
 		// Private Members
-		private Random rnd = new Random();
+		private static Random rnd = new Random();
 
 		// Enums
 		public enum Language
