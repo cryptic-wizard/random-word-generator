@@ -1,5 +1,16 @@
 ﻿Feature: WordGenerator
 
+Scenario Outline: Word Lists Do Not Have Duplicate Words
+	When I get the list of <partOfSpeech>
+	Then the list has no duplicates
+
+	Examples:
+	| partOfSpeech |
+	| noun         |
+	| adj          |
+	| adv          |
+	| art          |
+
 Scenario Outline: Get a Single Word With Part Of Speech
 	When I get a <partOfSpeech>
 	Then I have a <partOfSpeech>
@@ -9,6 +20,7 @@ Scenario Outline: Get a Single Word With Part Of Speech
 	| noun         |
 	| adj          |
 	| adv          |
+	| art          |
 
 Scenario Outline: Get a Single Word With Global Part Of Speech
 	Given I set the part of speech to <partOfSpeech>
@@ -20,6 +32,7 @@ Scenario Outline: Get a Single Word With Global Part Of Speech
 	| noun         |
 	| adj          |
 	| adv          |
+	| art          |
 
 Scenario: Get a Single Word With No Global Part Of Speech
 	When I get a word
@@ -37,6 +50,7 @@ Scenario Outline: Get Multiple Words With Part Of Speech
 	| 5 | adj          |
 	| 2 | adv          |
 	| 5 | adv          |
+	| 2 | art          |
 
 Scenario Outline: Get Multiple Words With Global Part Of Speech
 	Given I set the part of speech to <partOfSpeech>
@@ -51,12 +65,13 @@ Scenario Outline: Get Multiple Words With Global Part Of Speech
 	| 5 | adj          |
 	| 2 | adv          |
 	| 5 | adv          |
+	| 2 | art          |
 
 Scenario: Get Multiple Words With No Global Part Of Speech
 	When I get 3 words
 	Then I do not have words
 
-Scenario Outline: Get Part Of Speech
+Scenario Outline: Get Parts Of Speech
 	When I get the parts of speech of <word>
 	Then the parts of speech contains <partOfSpeech>
 
@@ -68,3 +83,5 @@ Scenario Outline: Get Part Of Speech
 	| short   | adj          |
 	| quickly | adv          |
 	| slowly  | adv          |
+	| a       | art          |
+	| an      | art          |

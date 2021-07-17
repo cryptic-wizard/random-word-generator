@@ -17,7 +17,6 @@ adept
 admirable
 admired
 adolescent
-adorable
 adored
 advanced
 afraid
@@ -270,13 +269,10 @@ disfigured
 disgusting
 disloyal
 dismal
-distant
-downright
 dreary
 dirty
 disguised
 dishonest
-dismal
 distant
 distinct
 distorted
@@ -288,7 +284,6 @@ downright
 drab
 drafty
 dramatic
-dreary
 droopy
 dry
 dual
@@ -783,7 +778,6 @@ obedient
 obese
 oblong
 oily
-oblong
 obvious
 occasional
 odd
@@ -871,7 +865,6 @@ precious
 present
 prestigious
 pretty
-precious
 previous
 pricey
 prickly
@@ -1167,7 +1160,6 @@ treasured
 tremendous
 tragic
 trained
-tremendous
 triangular
 tricky
 trifling

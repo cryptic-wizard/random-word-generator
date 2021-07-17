@@ -26,6 +26,7 @@ namespace NameGeneratorLibrary
         {
 			adj,
 			adv,
+			art,
 			noun,
         }
 
@@ -111,15 +112,62 @@ namespace NameGeneratorLibrary
 				return null;
 			}
 
-			List<string> toReturn = new List<string>();
-			List<string> words = GetWordList((PartOfSpeech)partOfSpeech);
+			List<string> words = new List<string>();
+			List<string> wordList = GetWordList((PartOfSpeech)partOfSpeech);
+			string word;
+			bool duplicate;
 
-			for (int i = 0; i < quantity; i++)
-			{
-				toReturn.Add(words[rnd.Next(words.Count)]);
+			if(quantity >= wordList.Count)
+            {
+				foreach(string s in wordList)
+                {
+					words.Add(s);
+                }
+            }
+			else
+            {
+				for (int i = 0; i < quantity; i++)
+				{
+					word = wordList[rnd.Next(wordList.Count)];
+					duplicate = false;
+
+					foreach(string s in words)
+                    {
+						char[] a = s.ToCharArray();
+						char[] b = word.ToCharArray();
+
+						if(a.Length != b.Length)
+                        {
+							duplicate = false;
+                        }
+						else
+                        {
+							duplicate = true;
+
+							for(int j = 0; j < a.Length; j++)
+                            {
+								if (a[j] != b[j])
+								{
+									duplicate = false;
+								}
+							}
+
+						}
+
+                    }
+					if(duplicate)
+                    {
+						Console.WriteLine("Duplicate = " + word);
+						i--;
+                    }
+					else
+                    {
+						words.Add(wordList[rnd.Next(wordList.Count)]);
+					}
+				}
 			}
 
-			return toReturn;
+			return words;
 		}
 
 		/// <summary>
@@ -130,15 +178,27 @@ namespace NameGeneratorLibrary
 		/// <returns> words </returns>
 		public List<string> GetWords(PartOfSpeech partOfSpeech, int quantity)
         {
-			List<string> toReturn = new List<string>();
-			List<string> words = GetWordList(partOfSpeech);
+			List<string> words = new List<string>();
+            List<string> wordList = GetWordList(partOfSpeech);
+			string randomWord;
+			bool duplicate;
 
-			for(int i = 0; i < quantity; i++)
+			// Prevent returning more words than exist in the list
+            if (quantity >= wordList.Count)
+			{
+				words = wordList;
+			}
+			else
             {
-				toReturn.Add(words[rnd.Next(words.Count)]);
+				words = wordList;
+
+				for(int i = wordList.Count; i > quantity; i--)
+                {
+					words.RemoveAt(rnd.Next(words.Count));
+                }
             }
 
-			return toReturn;
+			return words;
 		}
 
 		/// <summary>
@@ -146,7 +206,7 @@ namespace NameGeneratorLibrary
 		/// </summary>
 		/// <param name="partOfSpeech"></param>
 		/// <returns> a list of all words with the specified part of speech </returns>
-		private List<string> GetWordList(PartOfSpeech partOfSpeech)
+		public List<string> GetWordList(PartOfSpeech partOfSpeech)
         {
 			List<string> words = new List<string>();
 			string resourceName = "NameGeneratorLibrary.LanguageFiles." + language.ToString() + '.' + partOfSpeech.ToString() + ".txt";
@@ -156,7 +216,7 @@ namespace NameGeneratorLibrary
 				Assembly assembly = GetType().Assembly;
 				Stream stream = assembly.GetManifestResourceStream(resourceName);
 
-				using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+				using (StreamReader reader = new StreamReader(stream, Encoding.ASCII))
 				{
 					string line = reader.ReadLine();
 

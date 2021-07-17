@@ -18,7 +18,6 @@ namespace NameGeneratorTest.Steps
         private string word;
         private List<WordGenerator.PartOfSpeech> partsOfSpeech;
 
-
         public WordGeneratorStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
@@ -85,6 +84,12 @@ namespace NameGeneratorTest.Steps
             partsOfSpeech = wordGenerator.GetPartsOfSpeech(word);
         }
 
+        [When(@"I get the list of (.*)")]
+        public void WhenIGetTheListOfWords(WordGenerator.PartOfSpeech partOfSpeech)
+        {
+            words = wordGenerator.GetWordList(partOfSpeech);
+        }
+
         #endregion
 
         #region ThenSteps
@@ -106,6 +111,28 @@ namespace NameGeneratorTest.Steps
             foreach(string word in words)
             {
                 Assert.Contains(partOfSpeech, wordGenerator.GetPartsOfSpeech(word), "Word = " + word.ToString());
+            }
+        }
+
+        [Then(@"the list has no duplicates")]
+        public void ThenTheListHasNoDuplicates()
+        {
+            Assert.IsNotNull(words);
+            int count;
+
+            foreach (string word in words)
+            {
+                count = 0;
+
+                foreach (string s in words)
+                {
+                    if (s == word)
+                    {
+                        count++;
+                    }
+                }
+
+                Assert.AreEqual(1, count, "Word = " + word.ToString());
             }
         }
 

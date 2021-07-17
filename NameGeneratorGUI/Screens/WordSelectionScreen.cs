@@ -32,7 +32,7 @@ namespace NameGeneratorGUI
 
             // Random word story variables
             story = RandomWordStory.ParseRandomWordStory(storyName);
-            mainTable = new Table(3, 2, false);
+            mainTable = new Table(2, (uint)story.randomWordsPartOfSpeech.Count, false);
             List<string> randomWords = new List<string>();
             ComboBox randomWordBox;
             uint index = 0;

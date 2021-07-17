@@ -157,7 +157,6 @@ bulb
 bull
 bulldozer
 bun
-butter
 chain
 chair
 chalk
