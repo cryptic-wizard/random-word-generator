@@ -10,4 +10,8 @@
     <EmbeddedResource Include="LanguageFiles\*\*.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="LanguageFiles\EN\verb.txt" />
+  </ItemGroup>
+
 </Project>
