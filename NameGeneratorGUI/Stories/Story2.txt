@@ -1,1 +1,1 @@
-﻿Story 2 is about <art> <adv> <adj> <noun>.
+﻿Story 2 is about <art> <adv> <adj> <noun> that <verb>s.

@@ -6,10 +6,11 @@ Scenario Outline: Word Lists Do Not Have Duplicate Words
 
 	Examples:
 	| partOfSpeech |
-	| noun         |
 	| adj          |
 	| adv          |
 	| art          |
+	| noun         |
+	| verb         |
 
 Scenario Outline: Get a Single Word With Part Of Speech
 	When I get a <partOfSpeech>
@@ -17,10 +18,11 @@ Scenario Outline: Get a Single Word With Part Of Speech
 
 	Examples:
 	| partOfSpeech |
-	| noun         |
 	| adj          |
 	| adv          |
 	| art          |
+	| noun         |
+	| verb         |
 
 Scenario Outline: Get a Single Word With Global Part Of Speech
 	Given I set the part of speech to <partOfSpeech>
@@ -29,10 +31,11 @@ Scenario Outline: Get a Single Word With Global Part Of Speech
 
 	Examples:
 	| partOfSpeech |
-	| noun         |
 	| adj          |
 	| adv          |
 	| art          |
+	| noun         |
+	| verb         |
 
 Scenario: Get a Single Word With No Global Part Of Speech
 	When I get a word
@@ -44,13 +47,15 @@ Scenario Outline: Get Multiple Words With Part Of Speech
 
 	Examples:
 	| x | partOfSpeech |
-	| 2 | noun         |
-	| 5 | noun         |
 	| 2 | adj          |
 	| 5 | adj          |
 	| 2 | adv          |
 	| 5 | adv          |
 	| 2 | art          |
+	| 2 | noun         |
+	| 5 | noun         |
+	| 2 | verb         |
+	| 5 | verb         |
 
 Scenario Outline: Get Multiple Words With Global Part Of Speech
 	Given I set the part of speech to <partOfSpeech>
@@ -59,13 +64,15 @@ Scenario Outline: Get Multiple Words With Global Part Of Speech
 
 	Examples:
 	| x | partOfSpeech |
-	| 2 | noun         |
-	| 5 | noun         |
 	| 2 | adj          |
 	| 5 | adj          |
 	| 2 | adv          |
 	| 5 | adv          |
 	| 2 | art          |
+	| 2 | noun         |
+	| 5 | noun         |
+	| 2 | verb         |
+	| 5 | verb         |
 
 Scenario: Get Multiple Words With No Global Part Of Speech
 	When I get 3 words
@@ -77,11 +84,13 @@ Scenario Outline: Get Parts Of Speech
 
 	Examples:
 	| word    | partOfSpeech |
-	| ball    | noun         |
-	| wall    | noun         |
 	| tall    | adj          |
 	| short   | adj          |
 	| quickly | adv          |
 	| slowly  | adv          |
 	| a       | art          |
 	| an      | art          |
+	| ball    | noun         |
+	| wall    | noun         |
+	| pull    | verb         |
+	| run     | verb         |

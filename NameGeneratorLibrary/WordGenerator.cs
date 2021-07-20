@@ -28,6 +28,7 @@ namespace NameGeneratorLibrary
 			adv,
 			art,
 			noun,
+			verb,
         }
 
 		// Constructors
