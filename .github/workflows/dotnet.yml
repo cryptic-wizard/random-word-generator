@@ -26,12 +26,12 @@ jobs:
 
     - name: Generate Specflow Test Report
       env:
-        TEST_RESULTS_PATH: "NameGeneratorTest/bin/Debug/netcoreapp3.1"
+        TEST_RESULTS_PATH: "RandomWordGeneratorTest/bin/Debug/netcoreapp3.1"
       run: |
         dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
-        livingdoc test-assembly ${TEST_RESULTS_PATH}/NameGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json
+        livingdoc test-assembly ${TEST_RESULTS_PATH}/RandomWordGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json
     - name: Publish Specflow Test Report
       uses: actions/upload-artifact@v2
       with:
-        name: NameGeneratorTestReport
+        name: RandomWordGeneratorTestReport
         path: LivingDoc.html
