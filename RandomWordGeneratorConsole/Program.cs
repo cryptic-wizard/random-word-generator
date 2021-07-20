@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using NameGeneratorLibrary;
+using RandomWordGenerator;
 
-namespace NameGeneratorConsole
+namespace RandomWordGeneratorConsole
 {
     class Program
     {

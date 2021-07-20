@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UI = Gtk.Builder.ObjectAttribute;
-using NameGeneratorLibrary;
+using RandomWordGenerator;
 
 namespace NameGeneratorGUI
 {

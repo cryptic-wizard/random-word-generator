@@ -6,7 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NameGeneratorLibrary\NameGeneratorLibrary.csproj" />
+    <PackageReference Include="GtkSharp" Version="3.24.24.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RandomWordGenerator\RandomWordGenerator.csproj" />
   </ItemGroup>
 
 </Project>
