@@ -94,3 +94,23 @@ Scenario Outline: Get Parts Of Speech
 	| wall    | noun         |
 	| pull    | verb         |
 	| run     | verb         |
+
+Scenario Outline: IsPartOfSpeech
+	When I check if <word> is <partOfSpeech>
+	Then the return value is <bool>
+
+	Examples:
+	| word    | partOfSpeech | bool  |
+	| tall    | adj          | true  |
+	| tall    | noun         | false |
+	| quickly | adv          | true  |
+	| quickly | adj          | false |
+	| the     | art          | true  |
+	| the     | adv          | false |
+	| ball    | noun         | true  |
+	| ball    | art          | false |
+	| orange  | noun         | true  |
+	| orange  | adj          | true  |
+	| orange  | verb         | false |
+	| orange  | art          | false |
+	| orange  | adv          | false |
