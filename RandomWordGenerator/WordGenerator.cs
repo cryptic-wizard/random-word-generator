@@ -181,8 +181,6 @@ namespace RandomWordGenerator
         {
 			List<string> words = new List<string>();
             List<string> wordList = GetWordList(partOfSpeech);
-			string randomWord;
-			bool duplicate;
 
 			// Prevent returning more words than exist in the list
             if (quantity >= wordList.Count)
@@ -239,5 +237,25 @@ namespace RandomWordGenerator
 
 			return words;
 		}
+
+		/// <summary>
+		/// Check if word is a specific part of speech
+		/// </summary>
+		/// <param name="word"></param>
+		/// <param name="partOfSpeech"></param>
+		/// <returns> true if word is the part of speech </returns>
+		public bool IsPartOfSpeech(string word, PartOfSpeech partOfSpeech)
+        {
+			List<PartOfSpeech> partsOfSpeech = GetPartsOfSpeech(word);
+
+			if(partsOfSpeech.Contains(partOfSpeech))
+            {
+				return true;
+            }
+			else
+            {
+				return false;
+            }
+        }
 	}
 }

@@ -17,6 +17,7 @@ namespace RandomWordGeneratorTest.Steps
         private List<string> words;
         private string word;
         private List<WordGenerator.PartOfSpeech> partsOfSpeech;
+        private bool myBool;
 
         public WordGeneratorStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -90,6 +91,12 @@ namespace RandomWordGeneratorTest.Steps
             words = wordGenerator.GetWordList(partOfSpeech);
         }
 
+        [When(@"I check if (.*) is (.*)")]
+        public void WhenICheckIfTallIsAdj(string word, WordGenerator.PartOfSpeech partOfSpeech)
+        {
+            myBool = wordGenerator.IsPartOfSpeech(word, partOfSpeech);
+        }
+
         #endregion
 
         #region ThenSteps
@@ -155,6 +162,12 @@ namespace RandomWordGeneratorTest.Steps
             Assert.IsNull(words);
         }
 
+        [Then(@"the return value is (.*)")]
+        public void ThenTheReturnValueIsTrue(bool value)
+        {
+            Assert.IsNotNull(myBool);
+            Assert.AreEqual(value, myBool);
+        }
 
         #endregion
     }
