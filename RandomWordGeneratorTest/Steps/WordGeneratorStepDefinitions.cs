@@ -1,10 +1,10 @@
-﻿using NameGeneratorLibrary;
+﻿using RandomWordGenerator;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System;
 
-namespace NameGeneratorTest.Steps
+namespace RandomWordGeneratorTest.Steps
 {
     [Binding]
     public sealed class WordGeneratorStepDefinitions

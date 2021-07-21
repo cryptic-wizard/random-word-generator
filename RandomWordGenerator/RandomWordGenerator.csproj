@@ -2,16 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>NameGeneratorLibrary</AssemblyName>
-    <RootNamespace>NameGeneratorLibrary</RootNamespace>
+    <AssemblyName>RandomWordGenerator</AssemblyName>
+    <RootNamespace>RandomWordGenerator</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="LanguageFiles\*\*.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="LanguageFiles\EN\verb.txt" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Linq;
 
-namespace NameGeneratorLibrary
+namespace RandomWordGenerator
 {
 	public class WordGenerator
 	{
@@ -210,11 +210,12 @@ namespace NameGeneratorLibrary
 		public List<string> GetWordList(PartOfSpeech partOfSpeech)
         {
 			List<string> words = new List<string>();
-			string resourceName = "NameGeneratorLibrary.LanguageFiles." + language.ToString() + '.' + partOfSpeech.ToString() + ".txt";
-
+			
 			try
 			{
 				Assembly assembly = GetType().Assembly;
+				string assemblyName = assembly.FullName.Split(',').First();
+				string resourceName = assemblyName + ".LanguageFiles." + language.ToString() + '.' + partOfSpeech.ToString() + ".txt";
 				Stream stream = assembly.GetManifestResourceStream(resourceName);
 
 				using (StreamReader reader = new StreamReader(stream, Encoding.ASCII))
@@ -233,7 +234,7 @@ namespace NameGeneratorLibrary
 			}
 			catch (Exception)
 			{
-				Console.WriteLine("Could not read file");
+				Console.WriteLine("ERROR - Could not read file");
 			}
 
 			return words;

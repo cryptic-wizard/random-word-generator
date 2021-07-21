@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>RandomWordGeneratorTest</AssemblyName>
+    <RootNamespace>RandomWordGeneratorTest</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,7 +11,7 @@
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.5" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.8" />
     <PackageReference Include="nunit" Version="3.13.2" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />    
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NameGeneratorLibrary\NameGeneratorLibrary.csproj" />
+    <ProjectReference Include="..\RandomWordGenerator\RandomWordGenerator.csproj" />
   </ItemGroup>
 
 </Project>
