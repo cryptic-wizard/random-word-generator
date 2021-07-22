@@ -28,7 +28,7 @@ jobs:
     - name: Generate TRX Test Report
       if: success() || failure()
       env:
-        TEST_RESULTS_PATH: "RandomWordGeneratorTest/TestResults/*.trx"
+        TEST_RESULTS_PATH: "*.trx"
       uses: dorny/test-reporter@v1
       with:
         artifact: TestExecution
