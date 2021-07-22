@@ -28,10 +28,9 @@ jobs:
     - name: Generate TRX Test Report
       if: success() || failure()
       env:
-        TEST_RESULTS_PATH: "*.trx"
+        TEST_RESULTS_PATH: "RandomWordGeneratorTest/TestResults/*.trx"
       uses: dorny/test-reporter@v1
       with:
-        artifact: TestExecution
         name: Specflow Tests
         path: ${TEST_RESULTS_PATH}
         reporter: dotnet-trx
