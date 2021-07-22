@@ -32,7 +32,7 @@ jobs:
       uses: dorny/test-reporter@v1
       with:
         name: Specflow Tests
-        path: '${TEST_RESULTS_PATH}'
+        path: RandomWordGeneratorTest/TestResults/*.trx
         reporter: dotnet-trx
     - name: Generate Specflow Test Report
       if: success() || failure()
