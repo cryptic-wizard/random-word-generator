@@ -28,12 +28,12 @@ jobs:
     - name: Generate TRX Test Report
       if: success() || failure()
       env:
-        TEST_RESULTS_PATH: "RandomWordGeneratorTest/bin/Debug/netcoreapp3.1"
+        TEST_RESULTS_PATH: "RandomWordGeneratorTest/TestResults/*.trx"
       uses: dorny/test-reporter@v1
       with:
         artifact: TestExecution
         name: Specflow Tests
-        path: 'RandomWordGeneratorTest/TestResults/TestExecution.trx'
+        path: ${TEST_RESULTS_PATH}
         reporter: dotnet-trx
     - name: Generate Specflow Test Report
       if: success() || failure()
@@ -43,6 +43,7 @@ jobs:
         dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
         livingdoc test-assembly ${TEST_RESULTS_PATH}/RandomWordGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json
     - name: Publish Specflow Test Report
+      if: success() || failure()
       uses: actions/upload-artifact@v2
       with:
         name: RandomWordGeneratorTestReport
