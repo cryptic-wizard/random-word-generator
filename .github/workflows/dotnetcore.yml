@@ -8,6 +8,7 @@ on:
 
 jobs:
   BuildAndTest:
+    name: Build & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -22,9 +23,20 @@ jobs:
     - name: Build Project
       run: dotnet build --no-restore
     - name: Run Tests
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=TestExecution.trx"
 
+    - name: Generate TRX Test Report
+      if: success() || failure()
+      env:
+        TEST_RESULTS_PATH: "RandomWordGeneratorTest/bin/Debug/netcoreapp3.1"
+      uses: dorny/test-reporter@v1
+      with:
+        artifact: TestExecution
+        name: Specflow Tests
+        path: 'RandomWordGeneratorTest/TestResults/TestExecution.trx'
+        reporter: dotnet-trx
     - name: Generate Specflow Test Report
+      if: success() || failure()
       env:
         TEST_RESULTS_PATH: "RandomWordGeneratorTest/bin/Debug/netcoreapp3.1"
       run: |
