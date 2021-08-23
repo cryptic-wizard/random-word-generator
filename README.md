@@ -5,4 +5,4 @@
 * [NUnit 3](https://nunit.org/)
 * [SpecFlow](https://specflow.org/tools/specflow/)
 ## License
-[MIT License](https://github.com/impolitetulip/random-word-generator/blob/main/LICENSE.md)
+[MIT License](https://github.com/cryptic-wizard/random-word-generator/blob/main/LICENSE.md)
