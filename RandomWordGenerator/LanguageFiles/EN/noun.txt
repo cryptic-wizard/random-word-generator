@@ -538,6 +538,7 @@ money
 monkey
 month
 moon
+moose
 morning
 mosquito
 motorboat
@@ -924,7 +925,7 @@ tugboat
 tulip
 tuna
 tune
-Turkey
+turkey
 turnip
 turtle
 TV
@@ -979,6 +980,7 @@ wing
 winter
 wire
 wish
+wizard
 wolf
 woman
 wood

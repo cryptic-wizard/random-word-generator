@@ -8,6 +8,7 @@ on:
 
 jobs:
   BuildAndTest:
+    name: Build & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -22,15 +23,26 @@ jobs:
     - name: Build Project
       run: dotnet build --no-restore
     - name: Run Tests
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=TestExecution.trx"
 
+    - name: Generate TRX Test Report
+      if: success() || failure()
+      env:
+        TEST_RESULTS_PATH: "RandomWordGeneratorTest/TestResults/*.trx"
+      uses: dorny/test-reporter@v1
+      with:
+        name: Specflow Tests
+        path: RandomWordGeneratorTest/TestResults/*.trx
+        reporter: dotnet-trx
     - name: Generate Specflow Test Report
+      if: success() || failure()
       env:
         TEST_RESULTS_PATH: "RandomWordGeneratorTest/bin/Debug/netcoreapp3.1"
       run: |
         dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
         livingdoc test-assembly ${TEST_RESULTS_PATH}/RandomWordGeneratorTest.dll -t ${TEST_RESULTS_PATH}/TestExecution.json
     - name: Publish Specflow Test Report
+      if: success() || failure()
       uses: actions/upload-artifact@v2
       with:
         name: RandomWordGeneratorTestReport
