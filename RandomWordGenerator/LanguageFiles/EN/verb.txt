@@ -415,6 +415,7 @@ hurt
 hypothesize
 identify
 ignore
+illuminate
 illustrate
 imagine
 implement

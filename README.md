@@ -1,6 +1,8 @@
 ## Tests
 [![.NET Core](https://github.com/impolitetulip/name-generator/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/impolitetulip/name-generator/actions/workflows/dotnetcore.yml)
 ## Tools
-[![Visual Studio](https://img.shields.io/badge/Visual-Studio-652D90?style=for-the-badge&logo=visualstudio)](https://visualstudio.microsoft.com/vs/)
+* [Visual Studio](https://visualstudio.microsoft.com/vs/)
+* [NUnit 3](https://nunit.org/)
+* [SpecFlow](https://specflow.org/tools/specflow/)
 ## License
-[![MIT License](https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge)](https://impolitetulip.mit-license.org/)
+[MIT License](https://github.com/impolitetulip/random-word-generator/blob/main/LICENSE.md)
