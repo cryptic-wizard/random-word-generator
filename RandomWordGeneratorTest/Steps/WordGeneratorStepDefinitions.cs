@@ -19,6 +19,8 @@ namespace RandomWordGeneratorTest.Steps
         private string word;
         private List<PartOfSpeech> partsOfSpeech;
         private bool myBool;
+        private List<PartOfSpeech> pattern;
+        private char delimiter;
 
         public WordGeneratorStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -40,6 +42,8 @@ namespace RandomWordGeneratorTest.Steps
             word = null;
             partsOfSpeech = null;
             wordGenerator.partOfSpeech = null;
+            pattern = null;
+            delimiter = ' ';
         }
 
         #endregion
@@ -50,6 +54,21 @@ namespace RandomWordGeneratorTest.Steps
         public void GivenISetThePartOfSpeechToX(PartOfSpeech partOfSpeech)
         {
             wordGenerator.partOfSpeech = partOfSpeech;
+        }
+
+        [Given(@"I set the delimiter to (.*)")]
+        public void GivenISetThePartOfSpeechToX(char delimiter)
+        {
+            this.delimiter = delimiter;
+        }
+
+        [Given(@"I set the pattern to (.*),(.*),(.*)")]
+        public void GivenISetThePatternToPattern(PartOfSpeech partOfSpeech0, PartOfSpeech partOfSpeech1, PartOfSpeech partOfSpeech2)
+        {
+            pattern = new List<PartOfSpeech>();
+            pattern.Add(partOfSpeech0);
+            pattern.Add(partOfSpeech1);
+            pattern.Add(partOfSpeech2);
         }
 
         #endregion
@@ -66,6 +85,18 @@ namespace RandomWordGeneratorTest.Steps
         public void WhenIGetAWord(PartOfSpeech partOfSpeech)
         {
             word = wordGenerator.GetWord(partOfSpeech);
+        }
+
+        [When("I get a pattern")]
+        public void WhenIGetAPattern()
+        {
+            word = wordGenerator.GetPattern(pattern, delimiter);
+        }
+
+        [When("I get (\\d+) patterns")]
+        public void WhenIGetXPatterns(int quantity)
+        {
+            words = wordGenerator.GetPatterns(pattern, quantity, delimiter);
         }
 
         [When("I get (\\d+) words")]
@@ -108,6 +139,29 @@ namespace RandomWordGeneratorTest.Steps
             Assert.IsNotNull(word);
             partsOfSpeech = wordGenerator.GetPartsOfSpeech(word);
             Assert.Contains(partOfSpeech, partsOfSpeech);
+        }
+
+        [Then("I have one pattern with (\\d+) words and (.*) delimiter")]
+        public void ThenIHaveOnePatternWithXWords(int wordsInPattern, char delimiter)
+        {
+            Assert.IsNotNull(word);
+            string[] split = word.Split(delimiter);
+            Assert.AreEqual(wordsInPattern, split.Length);
+        }
+
+        [Then("I have (\\d+) patterns with (\\d+) words and (.*) delimiter")]
+        public void ThenIHaveXPatternsWithYWords(int quantity, int wordsInPattern, char delimiter)
+        {
+            Assert.IsNotNull(words);
+            Assert.AreEqual(quantity, words.Count);
+
+            string[] split;
+
+            foreach(string word in words)
+            {
+                split = word.Split(delimiter);
+                Assert.AreEqual(wordsInPattern, split.Length);
+            }
         }
 
         [Then("I have (\\d+) (.*)")]
