@@ -19,7 +19,7 @@ jobs:
     - uses: cryptic-wizard/run-specflow-tests@v1.1.0
       with:
         test-assembly-path: RandomWordGeneratorTest/bin/Debug/netcoreapp3.1
-        test-assembly-dll: RandomWordGenerator.dll
+        test-assembly-dll: RandomWordGeneratorTest.dll
         test-execution-json: TestExecution.json
         output-html: RandomWordGeneratorResults.html
         dotnet-version: netcoreapp3.1
