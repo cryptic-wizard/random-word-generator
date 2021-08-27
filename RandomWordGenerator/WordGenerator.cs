@@ -11,26 +11,7 @@ namespace RandomWordGenerator
 	{
 		// Public Members
 		public PartOfSpeech? partOfSpeech;
-
-		public Language language
-        {
-			get { return language; }
-			set
-            {
-				language = value;
-
-				if(preload)
-                {
-					preload = false;
-					adj = GetWordList(PartOfSpeech.adj);
-					adv = GetWordList(PartOfSpeech.adv);
-					art = GetWordList(PartOfSpeech.art);
-					noun = GetWordList(PartOfSpeech.noun);
-					verb = GetWordList(PartOfSpeech.verb);
-					preload = true;
-				}
-			}
-        }
+		public Language language;
 
 		// Private Members
 		private static Random rnd = new Random();
@@ -76,6 +57,26 @@ namespace RandomWordGenerator
 				this.preload = true;
 			}
         }
+
+		/// <summary>
+		/// Set Language and reload dictionaries if preload is set
+		/// </summary>
+		/// <param name="language"></param>
+		public void SetLanguage(Language language)
+        {
+			this.language = language;
+
+			if (preload)
+			{
+				preload = false;
+				adj = GetWordList(PartOfSpeech.adj);
+				adv = GetWordList(PartOfSpeech.adv);
+				art = GetWordList(PartOfSpeech.art);
+				noun = GetWordList(PartOfSpeech.noun);
+				verb = GetWordList(PartOfSpeech.verb);
+				preload = true;
+			}
+		}
 
 		/// <summary>
 		/// Gets a list of possible parts of speech of a word
@@ -236,6 +237,48 @@ namespace RandomWordGenerator
 
 			return words;
 		}
+
+		public string GetPattern(List<PartOfSpeech> partsOfSpeech, char delimiter)
+        {
+			string pattern = "";
+
+			for(int i = 0; i < partsOfSpeech.Count; i++)
+            {
+				pattern += GetWord(partsOfSpeech[i]);
+
+				if(i != partsOfSpeech.Count - 1)
+                {
+					pattern += delimiter;
+                }
+			}
+
+			return pattern;
+        }
+
+		public List<string> GetPatterns(List<PartOfSpeech> partsOfSpeech, int quantity, char delimiter)
+        {
+			List<string> patterns = new List<string>();
+			string pattern;
+
+			for(int i = 0; i < quantity; i++)
+            {
+				pattern = "";
+
+				for (int j = 0; j < partsOfSpeech.Count; j++)
+				{
+					pattern += GetWord(partsOfSpeech[j]);
+
+					if (j != partsOfSpeech.Count - 1)
+					{
+						pattern += delimiter;
+					}
+				}
+
+				patterns.Add(pattern);
+			}
+
+			return patterns;
+        }
 
 		/// <summary>
 		/// Reads a word list with the specified part of speech from embedded resources
