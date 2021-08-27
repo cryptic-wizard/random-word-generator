@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System;
+using static RandomWordGenerator.WordGenerator;
 
 namespace RandomWordGeneratorTest.Steps
 {
@@ -16,7 +17,7 @@ namespace RandomWordGeneratorTest.Steps
         private WordGenerator wordGenerator;
         private List<string> words;
         private string word;
-        private List<WordGenerator.PartOfSpeech> partsOfSpeech;
+        private List<PartOfSpeech> partsOfSpeech;
         private bool myBool;
 
         public WordGeneratorStepDefinitions(ScenarioContext scenarioContext)
@@ -46,7 +47,7 @@ namespace RandomWordGeneratorTest.Steps
         #region GivenSteps
 
         [Given(@"I set the part of speech to (.*)")]
-        public void GivenISetThePartOfSpeechToX(WordGenerator.PartOfSpeech partOfSpeech)
+        public void GivenISetThePartOfSpeechToX(PartOfSpeech partOfSpeech)
         {
             wordGenerator.partOfSpeech = partOfSpeech;
         }
@@ -62,7 +63,7 @@ namespace RandomWordGeneratorTest.Steps
         }
 
         [When("I get a (.*)")]
-        public void WhenIGetAWord(WordGenerator.PartOfSpeech partOfSpeech)
+        public void WhenIGetAWord(PartOfSpeech partOfSpeech)
         {
             word = wordGenerator.GetWord(partOfSpeech);
         }
@@ -74,7 +75,7 @@ namespace RandomWordGeneratorTest.Steps
         }
 
         [When("I get (\\d+) (.*)")]
-        public void WhenIGetXWords(int quantity, WordGenerator.PartOfSpeech partOfSpeech)
+        public void WhenIGetXWords(int quantity, PartOfSpeech partOfSpeech)
         {
             words = wordGenerator.GetWords(partOfSpeech, quantity);
         }
@@ -86,13 +87,13 @@ namespace RandomWordGeneratorTest.Steps
         }
 
         [When(@"I get the list of (.*)")]
-        public void WhenIGetTheListOfWords(WordGenerator.PartOfSpeech partOfSpeech)
+        public void WhenIGetTheListOfWords(PartOfSpeech partOfSpeech)
         {
             words = wordGenerator.GetWordList(partOfSpeech);
         }
 
         [When(@"I check if (.*) is (.*)")]
-        public void WhenICheckIfTallIsAdj(string word, WordGenerator.PartOfSpeech partOfSpeech)
+        public void WhenICheckIfTallIsAdj(string word, PartOfSpeech partOfSpeech)
         {
             myBool = wordGenerator.IsPartOfSpeech(word, partOfSpeech);
         }
@@ -102,7 +103,7 @@ namespace RandomWordGeneratorTest.Steps
         #region ThenSteps
 
         [Then("I have a (.*)")]
-        public void ThenIHaveAWord(WordGenerator.PartOfSpeech partOfSpeech)
+        public void ThenIHaveAWord(PartOfSpeech partOfSpeech)
         {
             Assert.IsNotNull(word);
             partsOfSpeech = wordGenerator.GetPartsOfSpeech(word);
@@ -110,7 +111,7 @@ namespace RandomWordGeneratorTest.Steps
         }
 
         [Then("I have (\\d+) (.*)")]
-        public void ThenIHaveXWords(int quantity, WordGenerator.PartOfSpeech partOfSpeech)
+        public void ThenIHaveXWords(int quantity, PartOfSpeech partOfSpeech)
         {
             Assert.IsNotNull(words);
             Assert.AreEqual(quantity, words.Count);
@@ -144,7 +145,7 @@ namespace RandomWordGeneratorTest.Steps
         }
 
         [Then(@"the parts of speech contains (.*)")]
-        public void ThenThePartsOfSpeechContainsX(WordGenerator.PartOfSpeech partOfSpeech)
+        public void ThenThePartsOfSpeechContainsX(PartOfSpeech partOfSpeech)
         {
             Assert.IsNotNull(partsOfSpeech);
             Assert.Contains(partOfSpeech, partsOfSpeech);

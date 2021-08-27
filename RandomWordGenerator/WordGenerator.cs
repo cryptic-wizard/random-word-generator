@@ -10,11 +10,36 @@ namespace RandomWordGenerator
 	public class WordGenerator
 	{
 		// Public Members
-		public Language language;
 		public PartOfSpeech? partOfSpeech;
+
+		public Language language
+        {
+			get { return language; }
+			set
+            {
+				language = value;
+
+				if(preload)
+                {
+					preload = false;
+					adj = GetWordList(PartOfSpeech.adj);
+					adv = GetWordList(PartOfSpeech.adv);
+					art = GetWordList(PartOfSpeech.art);
+					noun = GetWordList(PartOfSpeech.noun);
+					verb = GetWordList(PartOfSpeech.verb);
+					preload = true;
+				}
+			}
+        }
 
 		// Private Members
 		private static Random rnd = new Random();
+		private bool preload = false;
+		private List<string> adj;
+		private List<string> adv;
+		private List<string> art;
+		private List<string> noun;
+		private List<string> verb = new List<string>();
 
 		// Enums
 		public enum Language
@@ -36,9 +61,20 @@ namespace RandomWordGenerator
 		/// Creates a new WordGenerator instance
 		/// </summary>
 		/// <param name="language"></param>
-		public WordGenerator(Language language = Language.EN)
+		/// <param name="preload"> Set to false in memory-constrained applications </param>
+		public WordGenerator(Language language = Language.EN, bool preload = true)
         {
 			this.language = language;
+
+			if(preload)
+            {
+				adj = GetWordList(PartOfSpeech.adj);
+				adv = GetWordList(PartOfSpeech.adv);
+				art = GetWordList(PartOfSpeech.art);
+				noun = GetWordList(PartOfSpeech.noun);
+				verb = GetWordList(PartOfSpeech.verb);
+				this.preload = true;
+			}
         }
 
 		/// <summary>
@@ -179,18 +215,19 @@ namespace RandomWordGenerator
 		/// <returns> words </returns>
 		public List<string> GetWords(PartOfSpeech partOfSpeech, int quantity)
         {
-			List<string> words = new List<string>();
             List<string> wordList = GetWordList(partOfSpeech);
+			List<string> words = wordList;
 
 			// Prevent returning more words than exist in the list
-            if (quantity >= wordList.Count)
+			if (quantity >= wordList.Count)
 			{
-				words = wordList;
+				return words;
 			}
 			else
             {
-				words = wordList;
-
+				// Remove words until the correct amount remains
+				// faster than randomly guessing indexes
+				// guaranteed to be in alphabetical order
 				for(int i = wordList.Count; i > quantity; i--)
                 {
 					words.RemoveAt(rnd.Next(words.Count));
@@ -207,6 +244,30 @@ namespace RandomWordGenerator
 		/// <returns> a list of all words with the specified part of speech </returns>
 		public List<string> GetWordList(PartOfSpeech partOfSpeech)
         {
+			if (preload)
+			{
+				if (partOfSpeech == PartOfSpeech.adj)
+				{
+					return adj;
+				}
+				else if (partOfSpeech == PartOfSpeech.adv)
+				{
+					return adv;
+				}
+				else if (partOfSpeech == PartOfSpeech.art)
+				{
+					return art;
+				}
+				else if (partOfSpeech == PartOfSpeech.noun)
+				{
+					return noun;
+				}
+				else if (partOfSpeech == PartOfSpeech.verb)
+				{
+					return verb;
+				}
+			}
+
 			List<string> words = new List<string>();
 			
 			try
@@ -223,7 +284,6 @@ namespace RandomWordGenerator
 					while (line != null)
 					{
 						words.Add(line);
-						//Console.WriteLine(line);
 						line = reader.ReadLine();
 					}
 

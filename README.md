@@ -63,7 +63,6 @@ true
 
 ## Planned Features
 * Patterns
-* Dictionary pre-loading
 * Other languages are not planned but can be added as .txt files in a folder of the language abreviation
   * ES
   * FR
