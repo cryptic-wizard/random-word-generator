@@ -16,7 +16,7 @@ jobs:
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-    - uses: actions/cryptic-wizard/run-specflow-tests@v1.1.0
+    - uses: cryptic-wizard/run-specflow-tests@v1.1.0
       with:
         test-assembly-path: RandomWordGenerator/bin/Debug/net5.0
         test-assembly-dll: RandomWordGenerator.dll
