@@ -16,13 +16,13 @@ jobs:
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-    - uses: cryptic-wizard/run-specflow-tests@v1.1.0
+    - uses: cryptic-wizard/run-specflow-tests@v1.2.0
       with:
         test-assembly-path: RandomWordGeneratorTest/bin/Debug/net5.0
         test-assembly-dll: RandomWordGeneratorTest.dll
         test-execution-json: TestExecution.json
         output-html: RandomWordGeneratorResults.html
-        dotnet-version: net5.0
+        framework: net5.0
         logger: trx
         logger-file-name: ../../RandomWordGeneratorResults.trx
     - uses: dorny/test-reporter@v1
