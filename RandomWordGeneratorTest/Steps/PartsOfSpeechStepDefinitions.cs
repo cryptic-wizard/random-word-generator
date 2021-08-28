@@ -10,12 +10,12 @@ using TechTalk.SpecFlow;
 namespace RandomWordGeneratorTest.Steps
 {
     [Binding]
-    public sealed class PartOfSpeechStepDefinitions
+    public sealed class PartsOfSpeechStepDefinitions
     {
         private WordGenerator wordGenerator;
         private WordGeneratorFixture wordGeneratorFixture;
 
-        public PartOfSpeechStepDefinitions(WordGenerator wordGenerator, WordGeneratorFixture wordGeneratorFixture)
+        public PartsOfSpeechStepDefinitions(WordGenerator wordGenerator, WordGeneratorFixture wordGeneratorFixture)
         {
             this.wordGenerator = wordGenerator;
             this.wordGeneratorFixture = wordGeneratorFixture;

@@ -1,4 +1,4 @@
-﻿Feature: PartOfSpeech
+﻿Feature: PartsOfSpeech
     Functions to get the part of speech of a word
 
 Scenario Outline: Get Parts Of Speech

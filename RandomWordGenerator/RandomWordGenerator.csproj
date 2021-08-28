@@ -4,6 +4,11 @@
     <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
     <AssemblyName>RandomWordGenerator</AssemblyName>
     <RootNamespace>RandomWordGenerator</RootNamespace>
+    <PackageId>RandomWordGenerator</PackageId>
+    <Version>0.9.0</Version>
+    <Authors>cryptic-wizard</Authors>
+    <PackageDescription>A nuget package to generate random words</PackageDescription>
+    <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
