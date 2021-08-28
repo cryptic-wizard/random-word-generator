@@ -11,6 +11,7 @@
 ## Usage
 Install Package:
 ```yaml
+dotnet nuget add source https://nuget.pkg.github.com/cryptic-wizard/index.json
 dotnet add package RandomWordGenerator
 ```
 ```xml

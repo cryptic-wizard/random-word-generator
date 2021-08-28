@@ -16,6 +16,9 @@ jobs:
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
+    - name: Add NuGet Package Source
+      run: |
+        dotnet nuget add source https://nuget.pkg.github.com/cryptic-wizard/index.json
     - uses: cryptic-wizard/run-specflow-tests@v1.2.0
       with:
         test-assembly-path: RandomWordGeneratorTest/bin/Release/net5.0
