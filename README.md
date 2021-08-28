@@ -9,6 +9,14 @@
 [![.NET Core](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml)
 
 ## Usage
+Install Package:
+```yaml
+dotnet add package RandomWordGenerator
+```
+```xml
+<PackageReference Include="RandomWordGenerator" Version="0.9.0" />
+```
+
 Includes:
 ```C#
 using RandomWordGenerator; //required
