@@ -1,11 +1,5 @@
-﻿using NUnit.Framework;
-using RandomWordGenerator;
-using static RandomWordGenerator.WordGenerator;
-using System;
+﻿using static RandomWordGenerator.WordGenerator;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TechTalk.SpecFlow;
 
 namespace RandomWordGeneratorTest
 {
