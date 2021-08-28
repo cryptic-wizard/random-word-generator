@@ -28,14 +28,35 @@ jewel
 GetWords()
 ```C#
 WordGenerator wordGenerator = new WordGenerator();
+List<string> advs = wordGenerator.GetWords(PartOfSpeech.adv, 5);
 
-List<string> adv = wordGenerator.GetWords(PartOfSpeech.adv, 10);
-List<string> adj = wordGenerator.GetWords(PartOfSpeech.adj, 10);
-List<string> noun = wordGenerator.GetWords(PartOfSpeech.noun, 10);
-
-for(int i = 0; i < 10; i++)
+foreach(strings in advs)
 {
-    Console.WriteLine(adv[i] + ' ' + adj[i] + ' ' + noun[i]);
+    Console.WriteLine(s);
+}
+```
+```Text
+abnormally
+boastfully
+daintily
+shakily
+surprisingly
+```
+
+Patterns
+```C#
+WordGenerator wordGenerator = new WordGenerator();
+
+List<PartOfSpeech> pattern = new List<PartOfSpeech>();
+pattern.Add(PartOfSpeech.adv);
+pattern.Add(PartOfSpeech.adj);
+pattern.Add(PartOfSpeech.noun);
+
+List<string> patterns = wordGenerator.GetPatterns(pattern, 10, ' ');
+
+foreach(string s in patterns)
+{
+    Console.WriteLine(s);
 }
 ```
 ```Text
@@ -62,7 +83,6 @@ true
 ```
 
 ## Planned Features
-* Patterns
 * Other languages are not planned but can be added as .txt files in a folder of the language abreviation
   * ES
   * FR

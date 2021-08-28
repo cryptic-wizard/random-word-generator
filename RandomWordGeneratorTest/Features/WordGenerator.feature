@@ -1,4 +1,5 @@
 ﻿Feature: WordGenerator
+    Base functions for getting a word and list of words
 
 Scenario Outline: Word Lists Do Not Have Duplicate Words
 	When I get the list of <partOfSpeech>
@@ -11,6 +12,11 @@ Scenario Outline: Word Lists Do Not Have Duplicate Words
 	| art          |
 	| noun         |
 	| verb         |
+
+Scenario: Set Language
+	Given I set the language to EN
+	When I get a noun
+	Then I have a noun
 
 Scenario Outline: Get a Single Word With Part Of Speech
 	When I get a <partOfSpeech>
@@ -78,63 +84,4 @@ Scenario: Get Multiple Words With No Global Part Of Speech
 	When I get 3 words
 	Then I do not have words
 
-Scenario Outline: Get A Single Pattern
-	Given I set the pattern to adv,adj,noun
-	And I set the delimiter to <delimiter>
-	When I get a pattern
-	Then I have one pattern with 3 words and <delimiter> delimiter
 
-	Examples:
-	| delimiter |
-	| ,         |
-	| _         |
-
-Scenario Outline: Get Multiple Patterns
-	Given I set the pattern to adv,adj,noun
-	And I set the delimiter to <delimiter>
-	When I get <quantity> patterns
-	Then I have <quantity> patterns with 3 words and <delimiter> delimiter
-
-	Examples:
-	| quantity | delimiter |
-	| 3        | ,         |
-	| 5		   | ,         |
-	| 3        | _         |
-	| 5		   | _         |
-
-Scenario Outline: Get Parts Of Speech
-	When I get the parts of speech of <word>
-	Then the parts of speech contains <partOfSpeech>
-
-	Examples:
-	| word    | partOfSpeech |
-	| tall    | adj          |
-	| short   | adj          |
-	| quickly | adv          |
-	| slowly  | adv          |
-	| a       | art          |
-	| an      | art          |
-	| ball    | noun         |
-	| wall    | noun         |
-	| pull    | verb         |
-	| run     | verb         |
-
-Scenario Outline: IsPartOfSpeech
-	When I check if <word> is <partOfSpeech>
-	Then the return value is <bool>
-
-	Examples:
-	| word    | partOfSpeech | bool  |
-	| tall    | adj          | true  |
-	| tall    | noun         | false |
-	| quickly | adv          | true  |
-	| quickly | adj          | false |
-	| the     | art          | true  |
-	| the     | adv          | false |
-	| ball    | noun         | true  |
-	| ball    | art          | false |
-	| orange  | noun         | true  |
-	| orange  | adj          | true  |
-	| orange  | verb         | false |
-	| orange  | art          | false |
-	| orange  | adv          | false |
