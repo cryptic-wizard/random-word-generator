@@ -17,5 +17,5 @@ jobs:
           dotnet-version: '3.1.x'
       - name: Publish NuGet Package
         run: |
-          dotnet pack -c Release
+          dotnet pack RandomWordGenerator -c Release
           dotnet nuget push "bin/Release/RandomWordGenerator.0.9.0.nupkg" --source "github"
