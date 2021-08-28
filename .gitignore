@@ -9,3 +9,4 @@ TestResults/
 
 # User Settings
 .vs/
+*.csproj.user
