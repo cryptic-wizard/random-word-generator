@@ -30,7 +30,7 @@ GetWords()
 WordGenerator wordGenerator = new WordGenerator();
 List<string> advs = wordGenerator.GetWords(PartOfSpeech.adv, 5);
 
-foreach(strings in advs)
+foreach(string s in advs)
 {
     Console.WriteLine(s);
 }
@@ -43,7 +43,7 @@ shakily
 surprisingly
 ```
 
-Patterns
+GetPatterns()
 ```C#
 WordGenerator wordGenerator = new WordGenerator();
 
