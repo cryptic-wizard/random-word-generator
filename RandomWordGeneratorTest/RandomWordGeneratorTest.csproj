@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="RandomWordGenerator" Version="0.9.0" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.50" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.22" />
     <PackageReference Include="nunit" Version="3.13.2" />
@@ -18,9 +19,5 @@
     <Folder Include="Drivers\" />
     <Folder Include="Hooks\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\RandomWordGenerator\RandomWordGenerator.csproj" />
-  </ItemGroup>
-
+  
 </Project>
