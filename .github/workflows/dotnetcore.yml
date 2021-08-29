@@ -30,8 +30,7 @@ jobs:
         name: Specflow Tests
         path: RandomWordGeneratorResults.trx
         reporter: dotnet-trx
-    - name: Publish Specflow and TRX Test Report
-      if: success() || failure()
+    - if: success() || failure()
       uses: actions/upload-artifact@v2
       with:
         name: RandomWordGeneratorTestResults

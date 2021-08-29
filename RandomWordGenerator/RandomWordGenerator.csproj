@@ -14,12 +14,12 @@
   * Random word stories
     </PackageDescription>
     <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
-    <PackageIcon>RandomWordGenerator.png</PackageIcon>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="LanguageFiles\*\*.txt" />
-    <None Include="RandomWordGenerator.png" Pack="true" PackagePath=""/>
+    <None Include="icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
   
 </Project>
