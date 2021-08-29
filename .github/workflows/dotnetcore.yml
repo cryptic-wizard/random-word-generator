@@ -18,7 +18,7 @@ jobs:
         dotnet-version: '3.1.x'
     - name: Add NuGet Package Source
       run: |
-        dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json" -n github -u cryptic-wizard -p ${{ secrets.NUGET_READ_TOKEN }}
+        dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json" -n github -u cryptic-wizard -p ${{ secrets.NUGET_READ_TOKEN }} --store-password-in-clear-text
     - uses: cryptic-wizard/run-specflow-tests@v1.2.0
       with:
         test-assembly-path: RandomWordGeneratorTest/bin/Release/netcoreapp3.1
