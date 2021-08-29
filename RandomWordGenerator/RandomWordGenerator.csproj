@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="LanguageFiles\*\*.txt" />
+    <None Include="RandomWordGenerator.png" Pack="true" PackagePath=""/>
   </ItemGroup>
   
 </Project>
