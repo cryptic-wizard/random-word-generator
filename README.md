@@ -8,7 +8,7 @@
 
 [![.NET Core 3.1](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml)
 
-[![NuGet Release](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml)
+[![NuGet Publish](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml)
 
 ## Usage
 Install Package:
@@ -17,7 +17,7 @@ dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json"
 dotnet add package RandomWordGenerator
 ```
 ```xml
-<PackageReference Include="RandomWordGenerator" Version="0.9.0" />
+<PackageReference Include="RandomWordGenerator" Version="0.9.1" />
 ```
 
 Includes:
