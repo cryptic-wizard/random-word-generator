@@ -14,7 +14,7 @@
   * Random word stories
     </PackageDescription>
     <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
-    <icon>RandomWordGenerator.png</icon>
+    <PackageIcon>RandomWordGenerator.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
