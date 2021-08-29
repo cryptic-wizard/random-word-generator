@@ -8,16 +8,17 @@
     <Version>0.9.1</Version>
     <Authors>cryptic-wizard</Authors>
     <PackageDescription>
-      * A random word generator for .NET and .NET Core
-        * Useful for:
-        * Username generation
-        * Random word stories
+* A random word generator for .NET and .NET Core
+* Useful for:
+  * Username generation
+  * Random word stories
     </PackageDescription>
     <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
+    <icon>RandomWordGenerator.png</icon>
   </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="LanguageFiles\*\*.txt" />
   </ItemGroup>
-
+  
 </Project>
