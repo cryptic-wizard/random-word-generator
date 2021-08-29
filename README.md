@@ -1,5 +1,5 @@
 ## Description
-* A nuget package to generate random words
+* A random word generator for .NET and .NET Core
 * Useful for:
   * Username generation
   * Random word stories
