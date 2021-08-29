@@ -11,7 +11,7 @@
 [![NuGet Publish](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml)
 
 ## Usage
-Install Package:
+#### Install Package:
 ```yaml
 dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json"
 dotnet add package RandomWordGenerator
@@ -20,13 +20,13 @@ dotnet add package RandomWordGenerator
 <PackageReference Include="RandomWordGenerator" Version="0.9.1" />
 ```
 
-Includes:
+#### Includes:
 ```C#
 using RandomWordGenerator; //required
 using static RandomWordGenerator.WordGenerator; //for brevity, not required
 ```
 
-GetWord()
+#### GetWord( )
 ```C#
 WordGenerator wordGenerator = new WordGenerator();
 string word = wordGenerator.GetWord(PartOfSpeech.noun);
@@ -36,7 +36,7 @@ Console.WriteLine(word);
 jewel
 ```
 
-GetWords()
+#### GetWords( )
 ```C#
 WordGenerator wordGenerator = new WordGenerator();
 List<string> advs = wordGenerator.GetWords(PartOfSpeech.adv, 5);
@@ -54,7 +54,7 @@ shakily
 surprisingly
 ```
 
-GetPatterns()
+#### GetPatterns( )
 ```C#
 WordGenerator wordGenerator = new WordGenerator();
 
@@ -83,7 +83,7 @@ successfully spherical scooter
 upbeat salty soldier
 ```
 
-IsPartOfSpeech()
+#### IsPartOfSpeech( )
 ```C#
 WordGenerator wordGenerator = new WordGenerator();
 bool isPartOfSpeech = wordGenerator.IsPartOfSpeech("ball", PartOfSpeech.noun);
