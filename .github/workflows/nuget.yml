@@ -1,4 +1,4 @@
-name: NuGet
+name: NuGet Publish
 
 on:
   release:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   Nuget:
-    name: Nuget
+    name: Nuget Publish
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,6 @@ jobs:
           dotnet-version: '3.1.x'
       - name: Publish NuGet Package
         run: |
-          dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json" -n github -u cryptic-wizard -p ${{ secrets.NUGET_PUBLISH }} --store-password-in-clear-text
+          dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json" -n github -u cryptic-wizard -p ${{ secrets.NUGET_PUBLISH_TOKEN }} --store-password-in-clear-text
           dotnet pack RandomWordGenerator -c Release
           dotnet nuget push "RandomWordGenerator/bin/Release/RandomWordGenerator.0.9.1.nupkg" --source "github"

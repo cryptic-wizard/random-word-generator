@@ -1,4 +1,4 @@
-name: .NET
+name: .NET 5.0
 
 on:
   push:
@@ -16,9 +16,6 @@ jobs:
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-    - name: Add NuGet Package Source
-      run: |
-        dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json" -n github -u cryptic-wizard -p ${{ secrets.NUGET_READ_TOKEN }} --store-password-in-clear-text
     - uses: cryptic-wizard/run-specflow-tests@v1.2.0
       with:
         test-assembly-path: RandomWordGeneratorTest/bin/Release/net5.0

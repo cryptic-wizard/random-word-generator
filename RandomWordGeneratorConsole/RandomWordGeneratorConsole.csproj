@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RandomWordGenerator" Version="0.9.0" />
+    <ProjectReference Include="..\RandomWordGenerator\RandomWordGenerator.csproj" />
   </ItemGroup>
 
 </Project>

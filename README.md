@@ -4,14 +4,16 @@
   * Username generation
   * Random word stories
 ## Tests
-[![.NET](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnet.yml)
+[![.NET 5.0](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnet.yml)
 
-[![.NET Core](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml)
+[![.NET Core 3.1](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml)
+
+[![NuGet Release](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml)
 
 ## Usage
 Install Package:
 ```yaml
-dotnet nuget add source https://nuget.pkg.github.com/cryptic-wizard/index.json
+dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json"
 dotnet add package RandomWordGenerator
 ```
 ```xml
