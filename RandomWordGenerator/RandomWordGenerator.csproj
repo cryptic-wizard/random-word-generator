@@ -7,6 +7,7 @@
     <PackageId>RandomWordGenerator</PackageId>
     <Version>0.9.1</Version>
     <Authors>cryptic-wizard</Authors>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageDescription>
 * A random word generator for .NET and .NET Core
 * Useful for:
@@ -20,6 +21,7 @@
   <ItemGroup>
     <EmbeddedResource Include="LanguageFiles\*\*.txt" />
     <None Include="icon.png" Pack="true" PackagePath=""/>
+    <None Include="../LICENSE.md" Pack="true" PackagePath=""/>
   </ItemGroup>
   
 </Project>
