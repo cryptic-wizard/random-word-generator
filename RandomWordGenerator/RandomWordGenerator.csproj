@@ -10,6 +10,7 @@
     <Version>0.9.1</Version>
     <Authors>cryptic-wizard</Authors>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <DocumentationFile>README.md</DocumentationFile>
     <ProjectUrl>https://github.com/cryptic-wizard/random-word-generator</ProjectUrl>
     <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
     <LicenseType>MIT</LicenseType>
