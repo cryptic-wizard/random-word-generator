@@ -2,26 +2,32 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+    <Title>RandomWordGenerator</Title>
+    <DocumentationFile></DocumentationFile>
     <AssemblyName>RandomWordGenerator</AssemblyName>
     <RootNamespace>RandomWordGenerator</RootNamespace>
     <PackageId>RandomWordGenerator</PackageId>
     <Version>0.9.1</Version>
     <Authors>cryptic-wizard</Authors>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <ProjectUrl>https://github.com/cryptic-wizard/random-word-generator</ProjectUrl>
+    <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
+    <LicenseType>MIT</LicenseType>
+    <Copyright>Copyright ©2021 cryptic-wizard</Copyright>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageDescription>
 * A random word generator for .NET and .NET Core
 * Useful for:
   * Username generation
   * Random word stories
     </PackageDescription>
-    <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
-    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="LanguageFiles\*\*.txt" />
     <None Include="icon.png" Pack="true" PackagePath=""/>
     <None Include="../LICENSE.md" Pack="true" PackagePath=""/>
+    <None Include="../README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
   
 </Project>
