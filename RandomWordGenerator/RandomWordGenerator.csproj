@@ -19,15 +19,8 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageDescription>
-* A random word generator for .NET and .NET Core
-* Useful for:
-  * Username generation
-  * Random word stories
-    </PackageDescription>
-    <PackageReleaseNotes>
-Initial Release
-    </PackageReleaseNotes>
+    <PackageDescription>A random word generator for .NET and .NET Core</PackageDescription>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
