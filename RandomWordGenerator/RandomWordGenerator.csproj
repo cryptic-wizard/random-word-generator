@@ -11,9 +11,11 @@
     <Copyright>Copyright ©2021 cryptic-wizard</Copyright>
     <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
+    <SignAssembly>false</SignAssembly>
     
     <PackageId>RandomWordGenerator</PackageId>
-    <PackageVersion>0.9.1</PackageVersion>
+    <Version>0.9.1</Version>
     <PackageProjectUrl>https://github.com/cryptic-wizard/random-word-generator</PackageProjectUrl>
     <PackageTags>rng random</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
@@ -21,8 +23,6 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageDescription>A random word generator for .NET and .NET Core</PackageDescription>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
-    <NeutralLanguage>en</NeutralLanguage>
-    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
