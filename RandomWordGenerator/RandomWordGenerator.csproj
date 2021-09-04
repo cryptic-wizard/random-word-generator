@@ -9,12 +9,14 @@
     <PackageId>RandomWordGenerator</PackageId>
     <Version>0.9.1</Version>
     <Authors>cryptic-wizard</Authors>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <DocumentationFile>README.md</DocumentationFile>
-    <ProjectUrl>https://github.com/cryptic-wizard/random-word-generator</ProjectUrl>
-    <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
     <LicenseType>MIT</LicenseType>
     <Copyright>Copyright ©2021 cryptic-wizard</Copyright>
+    
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/cryptic-wizard/random-word-generator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cryptic-wizard/random-word-generator</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageIcon>icon.png</PackageIcon>
     <PackageDescription>
 * A random word generator for .NET and .NET Core
