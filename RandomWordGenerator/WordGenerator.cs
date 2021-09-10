@@ -98,13 +98,14 @@ namespace RandomWordGenerator
 		public string GetWord()
         {
 			int totalWords = 0;
+			int randomNumber;
 
-			foreach(PartOfSpeech partOfSpeech in wordDictionary.Keys)
+			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
             {
 				totalWords += wordDictionary[partOfSpeech].Count;
             }
 
-			int randomNumber = rnd.Next(totalWords);
+			randomNumber = rnd.Next(totalWords);
 
 			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
 			{
@@ -138,62 +139,48 @@ namespace RandomWordGenerator
 		/// <returns> words </returns>
 		public List<string> GetWords(int quantity)
 		{
+			int totalWords = 0;
+			int[] randomNumbers = new int[quantity];
 			List<string> words = new List<string>();
-			List<string> wordList = new List<string>();
-			string word;
-			bool duplicate;
 
-			if(quantity >= wordList.Count)
+			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
+			{
+				totalWords += wordDictionary[partOfSpeech].Count;
+			}
+
+			for(int i = 0; i < quantity; i++)
             {
-				foreach(string s in wordList)
+				randomNumbers[i] = rnd.Next(totalWords);
+			}
+
+			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
+			{
+				for(int i = 0; i < quantity; i++)
                 {
-					words.Add(s);
-                }
-            }
-			else
-            {
-				for (int i = 0; i < quantity; i++)
-				{
-					word = wordList[rnd.Next(wordList.Count)];
-					duplicate = false;
-
-					foreach(string s in words)
+					if(randomNumbers[i] == -1)
                     {
-						char[] a = s.ToCharArray();
-						char[] b = word.ToCharArray();
-
-						if(a.Length != b.Length)
-                        {
-							duplicate = false;
-                        }
-						else
-                        {
-							duplicate = true;
-
-							for(int j = 0; j < a.Length; j++)
-                            {
-								if (a[j] != b[j])
-								{
-									duplicate = false;
-								}
-							}
-
-						}
-
+						continue;
                     }
-					if(duplicate)
-                    {
-						Console.WriteLine("Duplicate = " + word);
-						i--;
-                    }
+					else if (randomNumbers[i] > wordDictionary[partOfSpeech].Count)
+					{
+						randomNumbers[i] -= wordDictionary[partOfSpeech].Count;
+					}
 					else
-                    {
-						words.Add(wordList[rnd.Next(wordList.Count)]);
+					{
+						words.Add(wordDictionary[partOfSpeech].ElementAt(randomNumbers[i]));
+						randomNumbers[i] = -1;
 					}
 				}
 			}
 
-			return words;
+			if(words.Count == 0)
+            {
+				return null;
+            }
+			else
+            {
+				return words;
+			}
 		}
 
 		/// <summary>
@@ -222,7 +209,7 @@ namespace RandomWordGenerator
             }
 			else
             {
-				List<string> wordList = wordDictionary[partOfSpeech];
+				List<string> wordList = new List<string>(wordDictionary[partOfSpeech]);
 				List<string> words = new List<string>();
 				int randomNumber;
 
@@ -235,6 +222,16 @@ namespace RandomWordGenerator
 
 				return words;
 			}
+		}
+
+		/// <summary>
+		/// Gets a list of all words with the specified part of speech
+		/// </summary>
+		/// <param name="partOfSpeech"></param>
+		/// <returns></returns>
+		public List<string> GetAllWords(PartOfSpeech partOfSpeech)
+		{
+			return wordDictionary[partOfSpeech];
 		}
 
 		public string GetPattern(List<PartOfSpeech> partsOfSpeech, char delimiter)
@@ -284,7 +281,7 @@ namespace RandomWordGenerator
 		/// </summary>
 		/// <param name="partOfSpeech"></param>
 		/// <returns> a list of all words with the specified part of speech </returns>
-		public List<string> LoadWords(PartOfSpeech partOfSpeech)
+		private List<string> LoadWords(PartOfSpeech partOfSpeech)
         {
 			List<string> words = new List<string>();
 			
@@ -313,6 +310,8 @@ namespace RandomWordGenerator
 				Console.WriteLine("ERROR - Could not read file");
 			}
 
+			words.Sort();
+
 			return words;
 		}
 
@@ -324,13 +323,17 @@ namespace RandomWordGenerator
 		/// <returns> true if word is the part of speech </returns>
 		public bool IsPartOfSpeech(string word, PartOfSpeech partOfSpeech)
         {
-			if(wordDictionary[partOfSpeech].BinarySearch(word) < 0)
+			List<string> myList = wordDictionary[partOfSpeech];
+			int index = myList.BinarySearch(word);
+			int debug = 0;
+
+			if(wordDictionary[partOfSpeech].BinarySearch(word) >= 0)
             {
-				return false;
+				return true;
             }
 			else
             {
-				return true;
+				return false;
             }
         }
 

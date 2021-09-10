@@ -41,6 +41,12 @@ namespace RandomWordGeneratorTest.Steps
             wordGeneratorFixture.myBool = wordGenerator.IsWord(word);
         }
 
+        [When(@"I check if I have a word")]
+        public void WhenICheckIfIHaveAWord()
+        {
+            wordGeneratorFixture.myBool = wordGenerator.IsWord(wordGeneratorFixture.word);
+        }
+
         #endregion
 
         #region ThenSteps
