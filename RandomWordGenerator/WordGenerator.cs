@@ -13,7 +13,7 @@ namespace RandomWordGenerator
 		public Language language { get; private set; }
 
 		// Private Members
-		private static Random rnd = new Random();
+		private static Random rnd;
 		private List<PartOfSpeech> partsOfSpeech;
 		private Dictionary<PartOfSpeech, List<string>> wordDictionary;
 
@@ -34,12 +34,14 @@ namespace RandomWordGenerator
 
 		// Constructors
 		/// <summary>
-		/// Creates a new WordGenerator instance
+		/// Creates a new WordGenerator
 		/// </summary>
 		/// <param name="language"></param>
 		public WordGenerator(Language language = Language.EN)
         {
 			this.language = language;
+
+			rnd = new Random();
 			partsOfSpeech = Enum.GetValues(typeof(PartOfSpeech)).Cast<PartOfSpeech>().ToList();
 			wordDictionary = new Dictionary<PartOfSpeech, List<string>>();
 
@@ -50,7 +52,7 @@ namespace RandomWordGenerator
         }
 
 		/// <summary>
-		/// Set Language and reload dictionaries if preload is set
+		/// Set Language and reload dictionaries
 		/// </summary>
 		/// <param name="language"></param>
 		public void SetLanguage(Language language)
@@ -194,11 +196,11 @@ namespace RandomWordGenerator
 			// Prevent returning more words than exist in the list
 			if (quantity >= wordDictionary[partOfSpeech].Count)
 			{
-				return wordDictionary[partOfSpeech];
+				return new List<string>(wordDictionary[partOfSpeech]);
 			}
 			else if(quantity > wordDictionary[partOfSpeech].Count/2)
             {
-				List<string> words = wordDictionary[partOfSpeech];
+				List<string> words = new List<string>(wordDictionary[partOfSpeech]);
 
 				for (int i = wordDictionary[partOfSpeech].Count; i > quantity; i--)
                 {
@@ -231,9 +233,15 @@ namespace RandomWordGenerator
 		/// <returns></returns>
 		public List<string> GetAllWords(PartOfSpeech partOfSpeech)
 		{
-			return wordDictionary[partOfSpeech];
+			return new List<string>(wordDictionary[partOfSpeech]);
 		}
 
+		/// <summary>
+		/// Gets a word phrase based in the provided pattern
+		/// </summary>
+		/// <param name="partsOfSpeech"> word pattern to match </param>
+		/// <param name="delimiter"> character to put between the words </param>
+		/// <returns></returns>
 		public string GetPattern(List<PartOfSpeech> partsOfSpeech, char delimiter)
         {
 			string pattern = "";
@@ -251,6 +259,13 @@ namespace RandomWordGenerator
 			return pattern;
         }
 
+		/// <summary>
+		/// Gets word phrases based in the provided pattern
+		/// </summary>
+		/// <param name="partsOfSpeech"> word pattern to match </param>
+		/// <param name="quantity"></param>
+		/// <param name="delimiter"> character to put between the words </param>
+		/// <returns></returns>
 		public List<string> GetPatterns(List<PartOfSpeech> partsOfSpeech, int quantity, char delimiter)
         {
 			List<string> patterns = new List<string>();
@@ -277,14 +292,50 @@ namespace RandomWordGenerator
         }
 
 		/// <summary>
+		/// Check if word is a specific part of speech
+		/// </summary>
+		/// <param name="word"></param>
+		/// <param name="partOfSpeech"></param>
+		/// <returns> true if word is the part of speech </returns>
+		public bool IsPartOfSpeech(string word, PartOfSpeech partOfSpeech)
+        {
+			if(wordDictionary[partOfSpeech].BinarySearch(word) >= 0)
+            {
+				return true;
+            }
+			else
+            {
+				return false;
+            }
+        }
+
+		/// <summary>
+		/// Check if a word is in the dictionary
+		/// </summary>
+		/// <param name="word"></param>
+		/// <returns></returns>
+		public bool IsWord(string word)
+        {
+			foreach(PartOfSpeech partOfSpeech in wordDictionary.Keys)
+			{
+				if (wordDictionary[partOfSpeech].BinarySearch(word) >= 0)
+				{
+					return true;
+				}
+			}
+
+			return false;
+        }
+
+		/// <summary>
 		/// Reads a word list with the specified part of speech from embedded resources
 		/// </summary>
 		/// <param name="partOfSpeech"></param>
 		/// <returns> a list of all words with the specified part of speech </returns>
 		private List<string> LoadWords(PartOfSpeech partOfSpeech)
-        {
+		{
 			List<string> words = new List<string>();
-			
+
 			try
 			{
 				Assembly assembly = GetType().Assembly;
@@ -314,45 +365,5 @@ namespace RandomWordGenerator
 
 			return words;
 		}
-
-		/// <summary>
-		/// Check if word is a specific part of speech
-		/// </summary>
-		/// <param name="word"></param>
-		/// <param name="partOfSpeech"></param>
-		/// <returns> true if word is the part of speech </returns>
-		public bool IsPartOfSpeech(string word, PartOfSpeech partOfSpeech)
-        {
-			List<string> myList = wordDictionary[partOfSpeech];
-			int index = myList.BinarySearch(word);
-			int debug = 0;
-
-			if(wordDictionary[partOfSpeech].BinarySearch(word) >= 0)
-            {
-				return true;
-            }
-			else
-            {
-				return false;
-            }
-        }
-
-		/// <summary>
-		/// Check if a word is in the dictionary
-		/// </summary>
-		/// <param name="word"></param>
-		/// <returns></returns>
-		public bool IsWord(string word)
-        {
-			foreach(PartOfSpeech partOfSpeech in wordDictionary.Keys)
-			{
-				if (wordDictionary[partOfSpeech].BinarySearch(word) >= 0)
-				{
-					return true;
-				}
-			}
-
-			return false;
-        }
 	}
 }

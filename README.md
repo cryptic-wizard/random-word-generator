@@ -17,7 +17,7 @@ dotnet add package RandomWordGenerator
 <PackageReference Include="RandomWordGenerator" Version="0.9.1" />
 ```
 
-#### Includes:
+#### Include Package:
 ```C#
 using RandomWordGenerator; //required
 using static RandomWordGenerator.WordGenerator; //for brevity, not required
@@ -25,8 +25,8 @@ using static RandomWordGenerator.WordGenerator; //for brevity, not required
 
 #### GetWord( )
 ```C#
-WordGenerator wordGenerator = new WordGenerator();
-string word = wordGenerator.GetWord(PartOfSpeech.noun);
+WordGenerator myWordGenerator = new WordGenerator();
+string word = myWordGenerator.GetWord(PartOfSpeech.noun);
 Console.WriteLine(word);
 ```
 ```Text
@@ -35,8 +35,8 @@ jewel
 
 #### GetWords( )
 ```C#
-WordGenerator wordGenerator = new WordGenerator();
-List<string> advs = wordGenerator.GetWords(PartOfSpeech.adv, 5);
+WordGenerator myWordGenerator = new WordGenerator();
+List<string> advs = myWordGenerator.GetWords(PartOfSpeech.adv, 5);
 
 foreach(string s in advs)
 {
@@ -51,16 +51,35 @@ shakily
 surprisingly
 ```
 
+#### IsWord ()
+```C#
+WordGenerator myWordGenerator = new WordGenerator();
+bool isWord = myWordGenerator.IsWord("exemplary");
+Console.WriteLine(isWord);
+```Text
+true
+```
+
+#### IsPartOfSpeech( )
+```C#
+WordGenerator myWordGenerator = new WordGenerator();
+bool isPartOfSpeech = myWordGenerator.IsPartOfSpeech("ball", PartOfSpeech.noun);
+Console.WriteLine(isPartOfSpeech);
+```
+```Text
+true
+```
+
 #### GetPatterns( )
 ```C#
-WordGenerator wordGenerator = new WordGenerator();
+WordGenerator myWordGenerator = new WordGenerator();
 
 List<PartOfSpeech> pattern = new List<PartOfSpeech>();
 pattern.Add(PartOfSpeech.adv);
 pattern.Add(PartOfSpeech.adj);
 pattern.Add(PartOfSpeech.noun);
 
-List<string> patterns = wordGenerator.GetPatterns(pattern, 10, ' ');
+List<string> patterns = myWordGenerator.GetPatterns(pattern, 10, ' ');
 
 foreach(string s in patterns)
 {
@@ -78,16 +97,6 @@ lively golden lizard
 mechanically foolish mitten
 successfully spherical scooter
 upbeat salty soldier
-```
-
-#### IsPartOfSpeech( )
-```C#
-WordGenerator wordGenerator = new WordGenerator();
-bool isPartOfSpeech = wordGenerator.IsPartOfSpeech("ball", PartOfSpeech.noun);
-Console.WriteLine(isPartOfSpeech);
-```
-```Text
-true
 ```
 
 ## Planned Features

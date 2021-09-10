@@ -144,6 +144,7 @@ bread
 break
 breakfast
 breath
+brevity
 brick
 bridge
 broccoli
