@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace RandomWordGenerator
 {
+	/// <summary>
+	/// A random word generator with PartOfSpeech support
+	/// </summary>
 	public class WordGenerator
 	{
 		// Public Members
@@ -14,8 +17,8 @@ namespace RandomWordGenerator
 
 		// Private Members
 		private static Random rnd;
-		private List<PartOfSpeech> partsOfSpeech;
-		private Dictionary<PartOfSpeech, List<string>> wordDictionary;
+		private readonly List<PartOfSpeech> partsOfSpeech;
+		private readonly Dictionary<PartOfSpeech, List<string>> wordDictionary;
 
 		// Enums
 		public enum Language
@@ -25,7 +28,7 @@ namespace RandomWordGenerator
 
 		public enum PartOfSpeech
         {
-			adj,
+            adj,
 			adv,
 			art,
 			noun,

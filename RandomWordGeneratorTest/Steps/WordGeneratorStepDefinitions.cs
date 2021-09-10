@@ -20,14 +20,14 @@ namespace RandomWordGeneratorTest.Steps
         #region ScenarioSteps
 
         [BeforeScenario]
-        public void BeforeScenario()
+        public static void BeforeScenario()
         {
             //wordGenerator = new WordGenerator();
             //wordGeneratorFixture = new WordGeneratorFixture();
         }
 
         [AfterScenario]
-        public void AfterScenario()
+        public static void AfterScenario()
         {
 
         }
@@ -122,13 +122,13 @@ namespace RandomWordGeneratorTest.Steps
         }
 
         [Then(@"I have a word")]
-        public void ThenIHaveAWord(string option)
+        public void ThenIHaveAWord()
         {
             Assert.IsNotNull(wordGeneratorFixture.word);
         }
 
         [Then(@"I do not have a word")]
-        public void ThenIDoNotHaveAWord(string option)
+        public void ThenIDoNotHaveAWord()
         {
             Assert.IsNull(wordGeneratorFixture.word);
         }

@@ -56,6 +56,7 @@ surprisingly
 WordGenerator myWordGenerator = new WordGenerator();
 bool isWord = myWordGenerator.IsWord("exemplary");
 Console.WriteLine(isWord);
+```
 ```Text
 true
 ```
