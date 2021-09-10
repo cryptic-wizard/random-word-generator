@@ -36,12 +36,6 @@ namespace RandomWordGeneratorTest.Steps
 
         #region GivenSteps
 
-        [Given(@"I set the part of speech to (.*)")]
-        public void GivenISetThePartOfSpeechToX(PartOfSpeech partOfSpeech)
-        {
-            wordGenerator.partOfSpeech = partOfSpeech;
-        }
-
         [Given(@"I set the language to (.*)")]
         public void GivenISetTheLanguageToX(Language language)
         {
@@ -79,7 +73,7 @@ namespace RandomWordGeneratorTest.Steps
         [When(@"I get the list of (.*)")]
         public void WhenIGetTheListOfWords(PartOfSpeech partOfSpeech)
         {
-            wordGeneratorFixture.words = wordGenerator.GetWordList(partOfSpeech);
+            wordGeneratorFixture.words = wordGenerator.LoadWords(partOfSpeech);
         }
 
         #endregion

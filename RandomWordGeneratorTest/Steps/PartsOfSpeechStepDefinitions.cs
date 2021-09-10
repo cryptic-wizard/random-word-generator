@@ -30,9 +30,15 @@ namespace RandomWordGeneratorTest.Steps
         }
 
         [When(@"I check if (.*) is (.*)")]
-        public void WhenICheckIfTallIsAdj(string word, PartOfSpeech partOfSpeech)
+        public void WhenICheckIfXIsY(string word, PartOfSpeech partOfSpeech)
         {
             wordGeneratorFixture.myBool = wordGenerator.IsPartOfSpeech(word, partOfSpeech);
+        }
+
+        [When(@"I check if (.*) is a word")]
+        public void WhenICheckIfXIsAWord(string word)
+        {
+            wordGeneratorFixture.myBool = wordGenerator.IsWord(word);
         }
 
         #endregion

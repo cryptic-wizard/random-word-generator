@@ -13,6 +13,7 @@ ant
 anteater
 antelope
 ape
+apogee
 apple
 arm
 armchair
