@@ -13,6 +13,7 @@ ant
 anteater
 antelope
 ape
+apogee
 apple
 arm
 armchair
@@ -143,6 +144,7 @@ bread
 break
 breakfast
 breath
+brevity
 brick
 bridge
 broccoli
@@ -258,6 +260,7 @@ dictionary
 dinghy
 dinosaur
 dirt
+disco
 dish
 dock
 dog

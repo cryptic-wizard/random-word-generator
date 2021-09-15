@@ -8,8 +8,8 @@ namespace RandomWordGeneratorTest.Steps
     [Binding]
     public sealed class WordGeneratorStepDefinitions
     {
-        private WordGenerator wordGenerator;
-        private WordGeneratorFixture wordGeneratorFixture;
+        private readonly WordGenerator wordGenerator;
+        private readonly WordGeneratorFixture wordGeneratorFixture;
 
         public WordGeneratorStepDefinitions(WordGenerator wordGenerator, WordGeneratorFixture wordGeneratorFixture)
         {
@@ -20,14 +20,14 @@ namespace RandomWordGeneratorTest.Steps
         #region ScenarioSteps
 
         [BeforeScenario]
-        public void BeforeScenario()
+        public static void BeforeScenario()
         {
             //wordGenerator = new WordGenerator();
             //wordGeneratorFixture = new WordGeneratorFixture();
         }
 
         [AfterScenario]
-        public void AfterScenario()
+        public static void AfterScenario()
         {
 
         }
@@ -36,14 +36,8 @@ namespace RandomWordGeneratorTest.Steps
 
         #region GivenSteps
 
-        [Given(@"I set the part of speech to (.*)")]
-        public void GivenISetThePartOfSpeechToX(PartOfSpeech partOfSpeech)
-        {
-            wordGenerator.partOfSpeech = partOfSpeech;
-        }
-
         [Given(@"I set the language to (.*)")]
-        public void GivenISetTheLanguageToX(Language language)
+        public void GivenISetTheLanguageToX(Languages language)
         {
             wordGenerator.SetLanguage(language);
         }
@@ -79,7 +73,7 @@ namespace RandomWordGeneratorTest.Steps
         [When(@"I get the list of (.*)")]
         public void WhenIGetTheListOfWords(PartOfSpeech partOfSpeech)
         {
-            wordGeneratorFixture.words = wordGenerator.GetWordList(partOfSpeech);
+            wordGeneratorFixture.words = wordGenerator.GetAllWords(partOfSpeech);
         }
 
         #endregion
@@ -90,8 +84,7 @@ namespace RandomWordGeneratorTest.Steps
         public void ThenIHaveAWord(PartOfSpeech partOfSpeech)
         {
             Assert.IsNotNull(wordGeneratorFixture.word);
-            wordGeneratorFixture.partsOfSpeech = wordGenerator.GetPartsOfSpeech(wordGeneratorFixture.word);
-            Assert.Contains(partOfSpeech, wordGeneratorFixture.partsOfSpeech);
+            Assert.True(wordGenerator.IsPartOfSpeech(wordGeneratorFixture.word, partOfSpeech), "Word = " + wordGeneratorFixture.word.ToString());
         }
 
         [Then("I have (\\d+) (.*)")]
@@ -102,7 +95,7 @@ namespace RandomWordGeneratorTest.Steps
 
             foreach(string word in wordGeneratorFixture.words)
             {
-                Assert.Contains(partOfSpeech, wordGenerator.GetPartsOfSpeech(word), "Word = " + word.ToString());
+                Assert.True(wordGenerator.IsPartOfSpeech(word, partOfSpeech), "Word = " + word.ToString());
             }
         }
 
@@ -128,10 +121,22 @@ namespace RandomWordGeneratorTest.Steps
             }
         }
 
+        [Then(@"I have a word")]
+        public void ThenIHaveAWord()
+        {
+            Assert.IsNotNull(wordGeneratorFixture.word);
+        }
+
         [Then(@"I do not have a word")]
         public void ThenIDoNotHaveAWord()
         {
             Assert.IsNull(wordGeneratorFixture.word);
+        }
+
+        [Then(@"I have words")]
+        public void ThenIHaveWords()
+        {
+            Assert.IsNotNull(wordGeneratorFixture.words);
         }
 
         [Then(@"I do not have words")]

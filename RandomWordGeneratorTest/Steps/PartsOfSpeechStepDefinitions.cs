@@ -8,8 +8,8 @@ namespace RandomWordGeneratorTest.Steps
     [Binding]
     public sealed class PartsOfSpeechStepDefinitions
     {
-        private WordGenerator wordGenerator;
-        private WordGeneratorFixture wordGeneratorFixture;
+        private readonly WordGenerator wordGenerator;
+        private readonly WordGeneratorFixture wordGeneratorFixture;
 
         public PartsOfSpeechStepDefinitions(WordGenerator wordGenerator, WordGeneratorFixture wordGeneratorFixture)
         {
@@ -30,9 +30,21 @@ namespace RandomWordGeneratorTest.Steps
         }
 
         [When(@"I check if (.*) is (.*)")]
-        public void WhenICheckIfTallIsAdj(string word, PartOfSpeech partOfSpeech)
+        public void WhenICheckIfXIsY(string word, PartOfSpeech partOfSpeech)
         {
             wordGeneratorFixture.myBool = wordGenerator.IsPartOfSpeech(word, partOfSpeech);
+        }
+
+        [When(@"I check if (.*) is a word")]
+        public void WhenICheckIfXIsAWord(string word)
+        {
+            wordGeneratorFixture.myBool = wordGenerator.IsWord(word);
+        }
+
+        [When(@"I check if I have a word")]
+        public void WhenICheckIfIHaveAWord()
+        {
+            wordGeneratorFixture.myBool = wordGenerator.IsWord(wordGeneratorFixture.word);
         }
 
         #endregion

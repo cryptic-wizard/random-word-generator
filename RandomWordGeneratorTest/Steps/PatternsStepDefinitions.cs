@@ -9,8 +9,8 @@ namespace RandomWordGeneratorTest.Steps
     [Binding]
     public sealed class PatternsStepDefinitions
     {
-        private WordGenerator wordGenerator;
-        private WordGeneratorFixture wordGeneratorFixture;
+        private readonly WordGenerator wordGenerator;
+        private readonly WordGeneratorFixture wordGeneratorFixture;
 
         public PatternsStepDefinitions(WordGenerator wordGenerator, WordGeneratorFixture wordGeneratorFixture)
         {
@@ -48,7 +48,7 @@ namespace RandomWordGeneratorTest.Steps
         [When("I get (\\d+) patterns")]
         public void WhenIGetXPatterns(int quantity)
         {
-            wordGeneratorFixture.words = wordGenerator.GetPatterns(wordGeneratorFixture.pattern, quantity, wordGeneratorFixture.delimiter);
+            wordGeneratorFixture.words = wordGenerator.GetPatterns(wordGeneratorFixture.pattern, wordGeneratorFixture.delimiter, quantity);
         }
 
         #endregion

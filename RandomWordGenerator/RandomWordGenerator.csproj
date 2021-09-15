@@ -15,14 +15,14 @@
     <SignAssembly>false</SignAssembly>
     
     <PackageId>RandomWordGenerator</PackageId>
-    <Version>0.9.1</Version>
+    <Version>0.9.2</Version>
     <PackageProjectUrl>https://github.com/cryptic-wizard/random-word-generator</PackageProjectUrl>
     <PackageTags>rng random</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageDescription>A random word generator for .NET and .NET Core</PackageDescription>
-    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageReleaseNotes>Added IsWord() function</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -7,30 +7,29 @@ using System.Linq;
 
 namespace RandomWordGenerator
 {
+	/// <summary>
+	/// A random word generator with PartOfSpeech support
+	/// </summary>
 	public class WordGenerator
 	{
 		// Public Members
-		public PartOfSpeech? partOfSpeech;
-		public Language language;
+		public Languages Language { get; private set; }
 
 		// Private Members
+		private int totalWords = 0;
 		private static Random rnd = new Random();
-		private bool preload = false;
-		private List<string> adj;
-		private List<string> adv;
-		private List<string> art;
-		private List<string> noun;
-		private List<string> verb = new List<string>();
+		private static List<PartOfSpeech> partsOfSpeech = Enum.GetValues(typeof(PartOfSpeech)).Cast<PartOfSpeech>().ToList();
+        private Dictionary<PartOfSpeech, List<string>> wordDictionary;
 
 		// Enums
-		public enum Language
+		public enum Languages
         {
 			EN,
         }
 
 		public enum PartOfSpeech
         {
-			adj,
+            adj,
 			adv,
 			art,
 			noun,
@@ -39,44 +38,20 @@ namespace RandomWordGenerator
 
 		// Constructors
 		/// <summary>
-		/// Creates a new WordGenerator instance
+		/// Creates a new WordGenerator
 		/// </summary>
 		/// <param name="language"></param>
-		/// <param name="preload"> Set to false in memory-constrained applications </param>
-		public WordGenerator(Language language = Language.EN, bool preload = true)
+		public WordGenerator(Languages language = Languages.EN)
         {
-			this.language = language;
+			Language = language;
+			wordDictionary = new Dictionary<PartOfSpeech, List<string>>();
 
-			if(preload)
-            {
-				adj = GetWordList(PartOfSpeech.adj);
-				adv = GetWordList(PartOfSpeech.adv);
-				art = GetWordList(PartOfSpeech.art);
-				noun = GetWordList(PartOfSpeech.noun);
-				verb = GetWordList(PartOfSpeech.verb);
-				this.preload = true;
+			foreach (PartOfSpeech partOfSpeech in partsOfSpeech)
+			{
+				wordDictionary.Add(partOfSpeech, LoadWords(partOfSpeech));
+				totalWords += wordDictionary[partOfSpeech].Count;
 			}
         }
-
-		/// <summary>
-		/// Set Language and reload dictionaries if preload is set
-		/// </summary>
-		/// <param name="language"></param>
-		public void SetLanguage(Language language)
-        {
-			this.language = language;
-
-			if (preload)
-			{
-				preload = false;
-				adj = GetWordList(PartOfSpeech.adj);
-				adv = GetWordList(PartOfSpeech.adv);
-				art = GetWordList(PartOfSpeech.art);
-				noun = GetWordList(PartOfSpeech.noun);
-				verb = GetWordList(PartOfSpeech.verb);
-				preload = true;
-			}
-		}
 
 		/// <summary>
 		/// Gets a list of possible parts of speech of a word
@@ -85,22 +60,19 @@ namespace RandomWordGenerator
 		/// <returns> a list of parts of speech or null if word not found </returns>
 		public List<PartOfSpeech> GetPartsOfSpeech(string word)
         {
-			List<string> words;
-			List<PartOfSpeech> partsOfSpeech = new List<PartOfSpeech>();
+			List<PartOfSpeech> partsOfSpeechFound = new List<PartOfSpeech>();
 
-			foreach(PartOfSpeech partOfSpeech in Enum.GetValues(typeof(PartOfSpeech)).Cast<PartOfSpeech>().ToList())
+			foreach(PartOfSpeech partOfSpeech in wordDictionary.Keys)
             {
-				words = GetWordList(partOfSpeech);
-
-				if(words.Contains(word))
+				if(wordDictionary[partOfSpeech].BinarySearch(word) >= 0)
                 {
-					partsOfSpeech.Add(partOfSpeech);
+					partsOfSpeechFound.Add(partOfSpeech);
                 }
             }
 
-			if(partsOfSpeech.Count != 0)
+			if(partsOfSpeechFound.Count != 0)
             {
-				return partsOfSpeech;
+				return partsOfSpeechFound;
             }
 			else
             {
@@ -109,20 +81,26 @@ namespace RandomWordGenerator
         }
 
 		/// <summary>
-		/// Gets a word with the field member part of speech
+		/// Gets a word with any part of speech
 		/// </summary>
-		/// <returns> a word or null if this.partOfSpeech is null </returns>
+		/// <returns> a word </returns>
 		public string GetWord()
         {
-			if(partOfSpeech == null)
-            {
-				return null;
-            }
+			int randomNumber = rnd.Next(totalWords);
 
-			List<string> words = GetWordList((PartOfSpeech)partOfSpeech);
-			string toReturn = words[rnd.Next(words.Count)];
+			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
+			{
+				if(randomNumber > wordDictionary[partOfSpeech].Count)
+                {
+					randomNumber -= wordDictionary[partOfSpeech].Count;
+				}
+				else
+                {
+					return wordDictionary[partOfSpeech].ElementAt(randomNumber);
+                }
+			}
 
-			return toReturn;
+			return null;
 		}
 
 		/// <summary>
@@ -132,80 +110,52 @@ namespace RandomWordGenerator
 		/// <returns> a word </returns>
 		public string GetWord(PartOfSpeech partOfSpeech)
         {
-			List<string> words = GetWordList(partOfSpeech);
-			string toReturn = words[rnd.Next(words.Count)];
-
-			return toReturn;
+			return wordDictionary[partOfSpeech][rnd.Next(wordDictionary[partOfSpeech].Count)];
 		}
 
 		/// <summary>
-		/// Gets a list of words with this.partOfSpeech
+		/// Gets a list of words with any part of speech
 		/// </summary>
 		/// <param name="quantity"> number of words to return </param>
-		/// <returns> words or null if this.partOfSpeech is null </returns>
+		/// <returns> words </returns>
 		public List<string> GetWords(int quantity)
 		{
-			if (partOfSpeech == null)
-			{
-				return null;
+			int[] randomNumbers = new int[quantity];
+			List<string> words = new List<string>();
+
+			for(int i = 0; i < quantity; i++)
+            {
+				randomNumbers[i] = rnd.Next(totalWords);
 			}
 
-			List<string> words = new List<string>();
-			List<string> wordList = GetWordList((PartOfSpeech)partOfSpeech);
-			string word;
-			bool duplicate;
-
-			if(quantity >= wordList.Count)
-            {
-				foreach(string s in wordList)
+			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
+			{
+				for(int i = 0; i < quantity; i++)
                 {
-					words.Add(s);
-                }
-            }
-			else
-            {
-				for (int i = 0; i < quantity; i++)
-				{
-					word = wordList[rnd.Next(wordList.Count)];
-					duplicate = false;
-
-					foreach(string s in words)
+					if(randomNumbers[i] == -1)
                     {
-						char[] a = s.ToCharArray();
-						char[] b = word.ToCharArray();
-
-						if(a.Length != b.Length)
-                        {
-							duplicate = false;
-                        }
-						else
-                        {
-							duplicate = true;
-
-							for(int j = 0; j < a.Length; j++)
-                            {
-								if (a[j] != b[j])
-								{
-									duplicate = false;
-								}
-							}
-
-						}
-
+						continue;
                     }
-					if(duplicate)
-                    {
-						Console.WriteLine("Duplicate = " + word);
-						i--;
-                    }
+					else if (randomNumbers[i] > wordDictionary[partOfSpeech].Count)
+					{
+						randomNumbers[i] -= wordDictionary[partOfSpeech].Count;
+					}
 					else
-                    {
-						words.Add(wordList[rnd.Next(wordList.Count)]);
+					{
+						words.Add(wordDictionary[partOfSpeech].ElementAt(randomNumbers[i]));
+						randomNumbers[i] = -1;
 					}
 				}
 			}
 
-			return words;
+			if(words.Count == 0)
+            {
+				return null;
+            }
+			else
+            {
+				return words;
+			}
 		}
 
 		/// <summary>
@@ -216,28 +166,55 @@ namespace RandomWordGenerator
 		/// <returns> words </returns>
 		public List<string> GetWords(PartOfSpeech partOfSpeech, int quantity)
         {
-            List<string> wordList = GetWordList(partOfSpeech);
-			List<string> words = wordList;
-
 			// Prevent returning more words than exist in the list
-			if (quantity >= wordList.Count)
+			if (quantity >= wordDictionary[partOfSpeech].Count)
 			{
-				return words;
+				return new List<string>(wordDictionary[partOfSpeech]);
 			}
-			else
+			else if(quantity > wordDictionary[partOfSpeech].Count/2)
             {
-				// Remove words until the correct amount remains
-				// faster than randomly guessing indexes
-				// guaranteed to be in alphabetical order
-				for(int i = wordList.Count; i > quantity; i--)
+				List<string> words = new List<string>(wordDictionary[partOfSpeech]);
+
+				for (int i = wordDictionary[partOfSpeech].Count; i > quantity; i--)
                 {
 					words.RemoveAt(rnd.Next(words.Count));
                 }
-            }
 
-			return words;
+				return words;
+            }
+			else
+            {
+				List<string> wordList = new List<string>(wordDictionary[partOfSpeech]);
+                List<string> words = new List<string>();
+                int randomNumber;
+
+				for (int i = 0; i < quantity; i++)
+				{
+					randomNumber = rnd.Next(wordList.Count);
+					words.Add(wordList[randomNumber]);
+					wordList.RemoveAt(randomNumber);
+				}
+
+				return words;
+			}
 		}
 
+		/// <summary>
+		/// Gets a list of all words with the specified part of speech
+		/// </summary>
+		/// <param name="partOfSpeech"></param>
+		/// <returns></returns>
+		public List<string> GetAllWords(PartOfSpeech partOfSpeech)
+		{
+			return new List<string>(wordDictionary[partOfSpeech]);
+		}
+
+		/// <summary>
+		/// Gets a word phrase based in the provided pattern
+		/// </summary>
+		/// <param name="partsOfSpeech"> word pattern to match </param>
+		/// <param name="delimiter"> character to put between the words </param>
+		/// <returns></returns>
 		public string GetPattern(List<PartOfSpeech> partsOfSpeech, char delimiter)
         {
 			string pattern = "";
@@ -246,7 +223,7 @@ namespace RandomWordGenerator
             {
 				pattern += GetWord(partsOfSpeech[i]);
 
-				if(i != partsOfSpeech.Count - 1)
+				if(i != (partsOfSpeech.Count - 1))
                 {
 					pattern += delimiter;
                 }
@@ -255,7 +232,14 @@ namespace RandomWordGenerator
 			return pattern;
         }
 
-		public List<string> GetPatterns(List<PartOfSpeech> partsOfSpeech, int quantity, char delimiter)
+		/// <summary>
+		/// Gets word phrases based in the provided pattern
+		/// </summary>
+		/// <param name="partsOfSpeech"> word pattern to match </param>
+		/// <param name="delimiter"> character to put between the words </param>
+		/// <param name="quantity"></param>
+		/// <returns></returns>
+		public List<string> GetPatterns(List<PartOfSpeech> partsOfSpeech, char delimiter, int quantity)
         {
 			List<string> patterns = new List<string>();
 			string pattern;
@@ -268,7 +252,7 @@ namespace RandomWordGenerator
 				{
 					pattern += GetWord(partsOfSpeech[j]);
 
-					if (j != partsOfSpeech.Count - 1)
+					if (j != (partsOfSpeech.Count - 1))
 					{
 						pattern += delimiter;
 					}
@@ -281,43 +265,55 @@ namespace RandomWordGenerator
         }
 
 		/// <summary>
+		/// Check if word is a specific part of speech
+		/// </summary>
+		/// <param name="word"></param>
+		/// <param name="partOfSpeech"></param>
+		/// <returns> true if word is the part of speech </returns>
+		public bool IsPartOfSpeech(string word, PartOfSpeech partOfSpeech)
+        {
+			if(wordDictionary[partOfSpeech].BinarySearch(word) >= 0)
+            {
+				return true;
+            }
+			else
+            {
+				return false;
+            }
+        }
+
+		/// <summary>
+		/// Check if a word is in the dictionary
+		/// </summary>
+		/// <param name="word"></param>
+		/// <returns></returns>
+		public bool IsWord(string word)
+        {
+			foreach(PartOfSpeech partOfSpeech in wordDictionary.Keys)
+			{
+				if (wordDictionary[partOfSpeech].BinarySearch(word) >= 0)
+				{
+					return true;
+				}
+			}
+
+			return false;
+        }
+
+		/// <summary>
 		/// Reads a word list with the specified part of speech from embedded resources
 		/// </summary>
 		/// <param name="partOfSpeech"></param>
 		/// <returns> a list of all words with the specified part of speech </returns>
-		public List<string> GetWordList(PartOfSpeech partOfSpeech)
-        {
-			if (preload)
-			{
-				if (partOfSpeech == PartOfSpeech.adj)
-				{
-					return adj;
-				}
-				else if (partOfSpeech == PartOfSpeech.adv)
-				{
-					return adv;
-				}
-				else if (partOfSpeech == PartOfSpeech.art)
-				{
-					return art;
-				}
-				else if (partOfSpeech == PartOfSpeech.noun)
-				{
-					return noun;
-				}
-				else if (partOfSpeech == PartOfSpeech.verb)
-				{
-					return verb;
-				}
-			}
-
+		private List<string> LoadWords(PartOfSpeech partOfSpeech)
+		{
 			List<string> words = new List<string>();
-			
+
 			try
 			{
 				Assembly assembly = GetType().Assembly;
 				string assemblyName = assembly.FullName.Split(',').First();
-				string resourceName = assemblyName + ".LanguageFiles." + language.ToString() + '.' + partOfSpeech.ToString() + ".txt";
+				string resourceName = assemblyName + ".LanguageFiles." + Language.ToString() + '.' + partOfSpeech.ToString() + ".txt";
 				Stream stream = assembly.GetManifestResourceStream(resourceName);
 
 				using (StreamReader reader = new StreamReader(stream, Encoding.ASCII))
@@ -338,27 +334,29 @@ namespace RandomWordGenerator
 				Console.WriteLine("ERROR - Could not read file");
 			}
 
+			words.Sort();
+
 			return words;
 		}
 
 		/// <summary>
-		/// Check if word is a specific part of speech
+		/// Set Language and reload dictionaries
 		/// </summary>
-		/// <param name="word"></param>
-		/// <param name="partOfSpeech"></param>
-		/// <returns> true if word is the part of speech </returns>
-		public bool IsPartOfSpeech(string word, PartOfSpeech partOfSpeech)
-        {
-			List<PartOfSpeech> partsOfSpeech = GetPartsOfSpeech(word);
+		/// <param name="language"></param>
+		public void SetLanguage(Languages language)
+		{
+			if (language == Language)
+			{
+				return;
+			}
 
-			if(partsOfSpeech.Contains(partOfSpeech))
-            {
-				return true;
-            }
-			else
-            {
-				return false;
-            }
-        }
+			Language = language;
+			wordDictionary.Clear();
+
+			foreach (PartOfSpeech partOfSpeech in partsOfSpeech)
+			{
+				wordDictionary.Add(partOfSpeech, LoadWords(partOfSpeech));
+			}
+		}
 	}
 }

@@ -18,6 +18,11 @@ Scenario: Set Language
 	When I get a noun
 	Then I have a noun
 
+Scenario Outline: Get a Single Word
+	When I get a word
+	And I check if I have a word
+	Then the return value is true
+
 Scenario Outline: Get a Single Word With Part Of Speech
 	When I get a <partOfSpeech>
 	Then I have a <partOfSpeech>
@@ -30,22 +35,15 @@ Scenario Outline: Get a Single Word With Part Of Speech
 	| noun         |
 	| verb         |
 
-Scenario Outline: Get a Single Word With Global Part Of Speech
-	Given I set the part of speech to <partOfSpeech>
-	When I get a word
-	Then I have a <partOfSpeech>
+Scenario Outline: Get Multiple Words
+	When I get <x> words
+	Then I have words
 
 	Examples:
-	| partOfSpeech |
-	| adj          |
-	| adv          |
-	| art          |
-	| noun         |
-	| verb         |
-
-Scenario: Get a Single Word With No Global Part Of Speech
-	When I get a word
-	Then I do not have a word
+	| x |
+	| 2 |
+	| 5 |
+	| 8 |
 
 Scenario Outline: Get Multiple Words With Part Of Speech
 	When I get <x> <partOfSpeech>
@@ -62,26 +60,3 @@ Scenario Outline: Get Multiple Words With Part Of Speech
 	| 5 | noun         |
 	| 2 | verb         |
 	| 5 | verb         |
-
-Scenario Outline: Get Multiple Words With Global Part Of Speech
-	Given I set the part of speech to <partOfSpeech>
-	When I get <x> words
-	Then I have <x> <partOfSpeech>
-
-	Examples:
-	| x | partOfSpeech |
-	| 2 | adj          |
-	| 5 | adj          |
-	| 2 | adv          |
-	| 5 | adv          |
-	| 2 | art          |
-	| 2 | noun         |
-	| 5 | noun         |
-	| 2 | verb         |
-	| 5 | verb         |
-
-Scenario: Get Multiple Words With No Global Part Of Speech
-	When I get 3 words
-	Then I do not have words
-
-

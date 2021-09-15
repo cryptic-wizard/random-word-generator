@@ -37,3 +37,17 @@ Scenario Outline: IsPartOfSpeech
 	| orange  | verb         | false |
 	| orange  | art          | false |
 	| orange  | adv          | false |
+
+Scenario Outline: IsWord
+	When I check if <word> is a word
+	Then the return value is <bool>
+
+	Examples:
+	| word    | bool  |
+	| ball    | true  |
+	| tall    | true  |
+	| quickly | true  |
+	| the     | true  |
+	| run     | true  |
+	| qwerty  | false |
+	| asdf    | false |
