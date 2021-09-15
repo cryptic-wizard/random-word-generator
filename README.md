@@ -14,7 +14,7 @@
 dotnet add package RandomWordGenerator
 ```
 ```xml
-<PackageReference Include="RandomWordGenerator" Version="0.9.1" />
+<PackageReference Include="RandomWordGenerator" Version="0.9.2" />
 ```
 
 #### Include Package:
@@ -100,7 +100,10 @@ successfully spherical scooter
 upbeat salty soldier
 ```
 
-## Planned Features
+## Features
+#### Recently Added
+* v0.9.2 - IsWord()
+#### Planned Features
 * Other languages are not planned but can be added as .txt files in a folder of the language abreviation
   * ES
   * FR
