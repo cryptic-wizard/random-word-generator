@@ -22,7 +22,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageDescription>A random word generator for .NET and .NET Core</PackageDescription>
-    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageReleaseNotes>Added IsWord() function</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

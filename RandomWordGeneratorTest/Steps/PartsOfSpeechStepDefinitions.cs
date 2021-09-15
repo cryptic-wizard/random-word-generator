@@ -8,8 +8,8 @@ namespace RandomWordGeneratorTest.Steps
     [Binding]
     public sealed class PartsOfSpeechStepDefinitions
     {
-        private WordGenerator wordGenerator;
-        private WordGeneratorFixture wordGeneratorFixture;
+        private readonly WordGenerator wordGenerator;
+        private readonly WordGeneratorFixture wordGeneratorFixture;
 
         public PartsOfSpeechStepDefinitions(WordGenerator wordGenerator, WordGeneratorFixture wordGeneratorFixture)
         {

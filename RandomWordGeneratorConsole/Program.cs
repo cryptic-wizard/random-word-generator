@@ -27,7 +27,7 @@ namespace RandomWordGeneratorConsole
             pattern.Add(PartOfSpeech.adj);
             pattern.Add(PartOfSpeech.noun);
 
-            List<string> patterns = wordGenerator.GetPatterns(pattern, 10, ' ');
+            List<string> patterns = wordGenerator.GetPatterns(pattern, ' ', 10);
 
             foreach(string s in patterns)
             {

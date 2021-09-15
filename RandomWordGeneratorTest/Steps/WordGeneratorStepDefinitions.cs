@@ -8,8 +8,8 @@ namespace RandomWordGeneratorTest.Steps
     [Binding]
     public sealed class WordGeneratorStepDefinitions
     {
-        private WordGenerator wordGenerator;
-        private WordGeneratorFixture wordGeneratorFixture;
+        private readonly WordGenerator wordGenerator;
+        private readonly WordGeneratorFixture wordGeneratorFixture;
 
         public WordGeneratorStepDefinitions(WordGenerator wordGenerator, WordGeneratorFixture wordGeneratorFixture)
         {
@@ -37,7 +37,7 @@ namespace RandomWordGeneratorTest.Steps
         #region GivenSteps
 
         [Given(@"I set the language to (.*)")]
-        public void GivenISetTheLanguageToX(Language language)
+        public void GivenISetTheLanguageToX(Languages language)
         {
             wordGenerator.SetLanguage(language);
         }

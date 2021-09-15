@@ -13,15 +13,16 @@ namespace RandomWordGenerator
 	public class WordGenerator
 	{
 		// Public Members
-		public Language language { get; private set; }
+		public Languages Language { get; private set; }
 
 		// Private Members
-		private static Random rnd;
-		private readonly List<PartOfSpeech> partsOfSpeech;
-		private readonly Dictionary<PartOfSpeech, List<string>> wordDictionary;
+		private int totalWords = 0;
+		private static Random rnd = new Random();
+		private static List<PartOfSpeech> partsOfSpeech = Enum.GetValues(typeof(PartOfSpeech)).Cast<PartOfSpeech>().ToList();
+        private Dictionary<PartOfSpeech, List<string>> wordDictionary;
 
 		// Enums
-		public enum Language
+		public enum Languages
         {
 			EN,
         }
@@ -40,34 +41,17 @@ namespace RandomWordGenerator
 		/// Creates a new WordGenerator
 		/// </summary>
 		/// <param name="language"></param>
-		public WordGenerator(Language language = Language.EN)
+		public WordGenerator(Languages language = Languages.EN)
         {
-			this.language = language;
-
-			rnd = new Random();
-			partsOfSpeech = Enum.GetValues(typeof(PartOfSpeech)).Cast<PartOfSpeech>().ToList();
+			Language = language;
 			wordDictionary = new Dictionary<PartOfSpeech, List<string>>();
 
 			foreach (PartOfSpeech partOfSpeech in partsOfSpeech)
 			{
 				wordDictionary.Add(partOfSpeech, LoadWords(partOfSpeech));
+				totalWords += wordDictionary[partOfSpeech].Count;
 			}
         }
-
-		/// <summary>
-		/// Set Language and reload dictionaries
-		/// </summary>
-		/// <param name="language"></param>
-		public void SetLanguage(Language language)
-        {
-			this.language = language;
-			wordDictionary.Clear();
-
-			foreach (PartOfSpeech partOfSpeech in partsOfSpeech)
-			{
-				wordDictionary.Add(partOfSpeech, LoadWords(partOfSpeech));
-			}
-		}
 
 		/// <summary>
 		/// Gets a list of possible parts of speech of a word
@@ -102,15 +86,7 @@ namespace RandomWordGenerator
 		/// <returns> a word </returns>
 		public string GetWord()
         {
-			int totalWords = 0;
-			int randomNumber;
-
-			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
-            {
-				totalWords += wordDictionary[partOfSpeech].Count;
-            }
-
-			randomNumber = rnd.Next(totalWords);
+			int randomNumber = rnd.Next(totalWords);
 
 			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
 			{
@@ -144,14 +120,8 @@ namespace RandomWordGenerator
 		/// <returns> words </returns>
 		public List<string> GetWords(int quantity)
 		{
-			int totalWords = 0;
 			int[] randomNumbers = new int[quantity];
 			List<string> words = new List<string>();
-
-			foreach (PartOfSpeech partOfSpeech in wordDictionary.Keys)
-			{
-				totalWords += wordDictionary[partOfSpeech].Count;
-			}
 
 			for(int i = 0; i < quantity; i++)
             {
@@ -215,8 +185,8 @@ namespace RandomWordGenerator
 			else
             {
 				List<string> wordList = new List<string>(wordDictionary[partOfSpeech]);
-				List<string> words = new List<string>();
-				int randomNumber;
+                List<string> words = new List<string>();
+                int randomNumber;
 
 				for (int i = 0; i < quantity; i++)
 				{
@@ -266,10 +236,10 @@ namespace RandomWordGenerator
 		/// Gets word phrases based in the provided pattern
 		/// </summary>
 		/// <param name="partsOfSpeech"> word pattern to match </param>
-		/// <param name="quantity"></param>
 		/// <param name="delimiter"> character to put between the words </param>
+		/// <param name="quantity"></param>
 		/// <returns></returns>
-		public List<string> GetPatterns(List<PartOfSpeech> partsOfSpeech, int quantity, char delimiter)
+		public List<string> GetPatterns(List<PartOfSpeech> partsOfSpeech, char delimiter, int quantity)
         {
 			List<string> patterns = new List<string>();
 			string pattern;
@@ -343,7 +313,7 @@ namespace RandomWordGenerator
 			{
 				Assembly assembly = GetType().Assembly;
 				string assemblyName = assembly.FullName.Split(',').First();
-				string resourceName = assemblyName + ".LanguageFiles." + language.ToString() + '.' + partOfSpeech.ToString() + ".txt";
+				string resourceName = assemblyName + ".LanguageFiles." + Language.ToString() + '.' + partOfSpeech.ToString() + ".txt";
 				Stream stream = assembly.GetManifestResourceStream(resourceName);
 
 				using (StreamReader reader = new StreamReader(stream, Encoding.ASCII))
@@ -367,6 +337,26 @@ namespace RandomWordGenerator
 			words.Sort();
 
 			return words;
+		}
+
+		/// <summary>
+		/// Set Language and reload dictionaries
+		/// </summary>
+		/// <param name="language"></param>
+		public void SetLanguage(Languages language)
+		{
+			if (language == Language)
+			{
+				return;
+			}
+
+			Language = language;
+			wordDictionary.Clear();
+
+			foreach (PartOfSpeech partOfSpeech in partsOfSpeech)
+			{
+				wordDictionary.Add(partOfSpeech, LoadWords(partOfSpeech));
+			}
 		}
 	}
 }

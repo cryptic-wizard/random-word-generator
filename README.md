@@ -80,7 +80,7 @@ pattern.Add(PartOfSpeech.adv);
 pattern.Add(PartOfSpeech.adj);
 pattern.Add(PartOfSpeech.noun);
 
-List<string> patterns = myWordGenerator.GetPatterns(pattern, 10, ' ');
+List<string> patterns = myWordGenerator.GetPatterns(pattern, ' ', 10);
 
 foreach(string s in patterns)
 {

@@ -260,6 +260,7 @@ dictionary
 dinghy
 dinosaur
 dirt
+disco
 dish
 dock
 dog
