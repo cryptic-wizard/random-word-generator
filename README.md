@@ -10,6 +10,8 @@
 
 [![.NET Core 3.1](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml)
 
+[![Nuget Publish](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/nuget.yml)
+
 ## Usage
 ### Install Package:
 ```Text
