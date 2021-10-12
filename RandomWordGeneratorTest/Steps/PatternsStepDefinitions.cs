@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
-using RandomWordGenerator;
-using static RandomWordGenerator.WordGenerator;
+using CrypticWizard.RandomWordGenerator;
+using static CrypticWizard.RandomWordGenerator.WordGenerator;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
-namespace RandomWordGeneratorTest.Steps
+namespace CrypticWizard.RandomWordGeneratorTest.Steps
 {
     [Binding]
     public sealed class PatternsStepDefinitions

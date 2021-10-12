@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using RandomWordGenerator;
-using static RandomWordGenerator.WordGenerator;
+using CrypticWizard.RandomWordGenerator;
+using static CrypticWizard.RandomWordGenerator.WordGenerator;
 
-namespace RandomWordGeneratorConsole
+namespace CrypticWizard.RandomWordGeneratorConsole
 {
     class Program
     {

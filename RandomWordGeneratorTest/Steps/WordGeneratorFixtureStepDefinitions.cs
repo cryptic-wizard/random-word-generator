@@ -1,8 +1,8 @@
-﻿using RandomWordGenerator;
+﻿using CrypticWizard.RandomWordGenerator;
 using TechTalk.SpecFlow;
 using BoDi;
 
-namespace RandomWordGeneratorTest.Steps
+namespace CrypticWizard.RandomWordGeneratorTest.Steps
 {
     [Binding]
     public class WordGeneratorFixtureStepDefinitions

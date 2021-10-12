@@ -1,7 +1,7 @@
-﻿using static RandomWordGenerator.WordGenerator;
+﻿using static CrypticWizard.RandomWordGenerator.WordGenerator;
 using System.Collections.Generic;
 
-namespace RandomWordGeneratorTest
+namespace CrypticWizard.RandomWordGeneratorTest
 {
     public class WordGeneratorFixture
     {

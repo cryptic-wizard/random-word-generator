@@ -1,3 +1,5 @@
+# random-word-generator
+[![nuget](https://img.shields.io/badge/nuget-v0.9.3-blue)](https://www.nuget.org/packages/CrypticWizard.RandomWordGenerator)
 ## Description
 * A random word generator for .NET and .NET Core
 * Useful for:
@@ -9,39 +11,33 @@
 [![.NET Core 3.1](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml)
 
 ## Usage
-#### Install Package:
+### Install Package:
 ```Text
-dotnet add package RandomWordGenerator
+dotnet add package CrypticWizard.RandomWordGenerator
 ```
 ```xml
-<PackageReference Include="RandomWordGenerator" Version="0.9.2" />
+<PackageReference Include="CrypticWizard.RandomWordGenerator" Version="0.9.3"/>
 ```
 
-#### Include Package:
+### Include Package:
 ```C#
-using RandomWordGenerator; //required
-using static RandomWordGenerator.WordGenerator; //for brevity, not required
+using CrypticWizard.RandomWordGenerator;
+using static CrypticWizard.RandomWordGenerator.WordGenerator; //for brevity, not required
 ```
 
-#### GetWord( )
+### GetWord( )
 ```C#
 WordGenerator myWordGenerator = new WordGenerator();
 string word = myWordGenerator.GetWord(PartOfSpeech.noun);
-Console.WriteLine(word);
 ```
 ```Text
 jewel
 ```
 
-#### GetWords( )
+### GetWords( )
 ```C#
 WordGenerator myWordGenerator = new WordGenerator();
 List<string> advs = myWordGenerator.GetWords(PartOfSpeech.adv, 5);
-
-foreach(string s in advs)
-{
-    Console.WriteLine(s);
-}
 ```
 ```Text
 abnormally
@@ -51,27 +47,25 @@ shakily
 surprisingly
 ```
 
-#### IsWord ()
+### IsWord ()
 ```C#
 WordGenerator myWordGenerator = new WordGenerator();
 bool isWord = myWordGenerator.IsWord("exemplary");
-Console.WriteLine(isWord);
 ```
 ```Text
 true
 ```
 
-#### IsPartOfSpeech( )
+### IsPartOfSpeech( )
 ```C#
 WordGenerator myWordGenerator = new WordGenerator();
 bool isPartOfSpeech = myWordGenerator.IsPartOfSpeech("ball", PartOfSpeech.noun);
-Console.WriteLine(isPartOfSpeech);
 ```
 ```Text
 true
 ```
 
-#### GetPatterns( )
+### GetPatterns( )
 ```C#
 WordGenerator myWordGenerator = new WordGenerator();
 
@@ -81,11 +75,6 @@ pattern.Add(PartOfSpeech.adj);
 pattern.Add(PartOfSpeech.noun);
 
 List<string> patterns = myWordGenerator.GetPatterns(pattern, ' ', 10);
-
-foreach(string s in patterns)
-{
-    Console.WriteLine(s);
-}
 ```
 ```Text
 clearly calm bandana
@@ -101,7 +90,8 @@ upbeat salty soldier
 ```
 
 ## Features
-#### Recently Added
+### Recently Added
+* v0.9.3 - package prefix
 * v0.9.2 - IsWord()
 #### Planned Features
 * Other languages are not planned but can be added as .txt files in a folder of the language abreviation

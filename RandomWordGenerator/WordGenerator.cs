@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Linq;
 
-namespace RandomWordGenerator
+namespace CrypticWizard.RandomWordGenerator
 {
 	/// <summary>
 	/// A random word generator with PartOfSpeech support

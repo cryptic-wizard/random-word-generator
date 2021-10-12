@@ -23,4 +23,4 @@ jobs:
         run: |
           dotnet nuget add source "https://nuget.pkg.github.com/cryptic-wizard/index.json" -n github -u cryptic-wizard -p ${{ secrets.NUGET_PUBLISH_TOKEN }} --store-password-in-clear-text
           dotnet pack RandomWordGenerator -c Release
-          dotnet nuget push "RandomWordGenerator/bin/Release/RandomWordGenerator.*.*.*.nupkg" -s "github" -k ${{ secrets.NUGET_PUBLISH_TOKEN }} --skip-duplicate
+          dotnet nuget push "RandomWordGenerator/bin/Release/CrypticWizard.RandomWordGenerator.*.*.*.nupkg" -s "github" -k ${{ secrets.NUGET_PUBLISH_TOKEN }} --skip-duplicate
