@@ -98,6 +98,13 @@ WordGenerator myWordGenerator = new WordGenerator();
 string word = myWordGenerator.GetWord(PartOfSpeech.noun);
 ```
 
+### Provide random
+```C#
+WordGenerator.UseRandom(new Random());
+WordGenerator myWordGenerator = new WordGenerator();
+string word = myWordGenerator.GetWord(PartOfSpeech.noun);
+```
+
 ## Features
 ### Recently Added
 * v0.9.3 - package prefix
