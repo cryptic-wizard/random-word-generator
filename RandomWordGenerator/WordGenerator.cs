@@ -371,6 +371,15 @@ namespace CrypticWizard.RandomWordGenerator
 			randomSeed = seed;
         }
 
+		/// <summary>
+		/// Sets the random used by the word generator
+		/// </summary>
+		/// <param name="random">Random</param>
+		public static void UseRandom(Random random)
+		{
+			rnd = random;
+		}
+
 		private static void EnsureRandomInitialized()
         {
 			if(rnd is null)
