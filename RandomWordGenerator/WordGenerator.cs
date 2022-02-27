@@ -17,7 +17,6 @@ namespace CrypticWizard.RandomWordGenerator
 
 		// Private Members
 		private int totalWords = 0;
-		private static int? randomSeed;
 		private static Random rnd;
 		private static List<PartOfSpeech> partsOfSpeech = Enum.GetValues(typeof(PartOfSpeech)).Cast<PartOfSpeech>().ToList();
         private Dictionary<PartOfSpeech, List<string>> wordDictionary;
@@ -368,8 +367,8 @@ namespace CrypticWizard.RandomWordGenerator
 		/// <param name="seed">Random seed</param>
 		public static void UseSeed(int seed)
         {
-			randomSeed = seed;
-        }
+			rnd = new Random(seed);
+		}
 
 		/// <summary>
 		/// Sets the random used by the word generator
@@ -384,15 +383,8 @@ namespace CrypticWizard.RandomWordGenerator
         {
 			if(rnd is null)
             {
-				return;
-            }
-
-			if(randomSeed is null)
-            {
 				rnd = new Random();
-            }
-
-			rnd = new Random((int)randomSeed);
+			}
         }
 	}
 }
