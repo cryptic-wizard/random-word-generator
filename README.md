@@ -1,5 +1,5 @@
 # random-word-generator
-[![nuget](https://img.shields.io/badge/nuget-v0.9.3-blue)](https://www.nuget.org/packages/CrypticWizard.RandomWordGenerator)
+[![nuget](https://img.shields.io/badge/nuget-v0.9.4-blue)](https://www.nuget.org/packages/CrypticWizard.RandomWordGenerator)
 ## Description
 * A random word generator for .NET and .NET Core
 * Useful for:
