@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <Title>RandomWordGenerator</Title>
     <Description>A random word generator for .NET and .NET Core</Description>
     <AssemblyName>RandomWordGenerator</AssemblyName>
@@ -15,14 +15,14 @@
     <SignAssembly>false</SignAssembly>
     
     <PackageId>CrypticWizard.RandomWordGenerator</PackageId>
-    <Version>0.9.4</Version>
+    <Version>0.9.5</Version>
     <PackageProjectUrl>https://github.com/cryptic-wizard/random-word-generator</PackageProjectUrl>
     <PackageTags>rng random username</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageDescription>A random word generator for .NET and .NET Core</PackageDescription>
-    <PackageReleaseNotes>Added random seed inputs - thanks michaldivis!</PackageReleaseNotes>
+    <PackageReleaseNotes>Target frameworks netcore3.1, net5.0, net6.0</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

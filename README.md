@@ -1,12 +1,12 @@
 # random-word-generator
-[![nuget](https://img.shields.io/badge/nuget-v0.9.4-blue)](https://www.nuget.org/packages/CrypticWizard.RandomWordGenerator)
+[![nuget](https://img.shields.io/badge/nuget-v0.9.5-blue)](https://www.nuget.org/packages/CrypticWizard.RandomWordGenerator)
 ## Description
 * A random word generator for .NET and .NET Core
 * Useful for:
   * Username generation
   * Random word stories
 ## Tests
-[![.NET 5.0](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnet.yml)
+[![.NET 6.0](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnet.yml)
 
 [![.NET Core 3.1](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/cryptic-wizard/random-word-generator/actions/workflows/dotnetcore.yml)
 
@@ -18,7 +18,7 @@
 dotnet add package CrypticWizard.RandomWordGenerator
 ```
 ```xml
-<PackageReference Include="CrypticWizard.RandomWordGenerator" Version="0.9.3"/>
+<PackageReference Include="CrypticWizard.RandomWordGenerator" Version="0.9.5"/>
 ```
 
 ### Include Package:
