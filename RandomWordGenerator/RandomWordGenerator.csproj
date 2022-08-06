@@ -15,14 +15,14 @@
     <SignAssembly>false</SignAssembly>
     
     <PackageId>CrypticWizard.RandomWordGenerator</PackageId>
-    <Version>0.9.3</Version>
+    <Version>0.9.4</Version>
     <PackageProjectUrl>https://github.com/cryptic-wizard/random-word-generator</PackageProjectUrl>
-    <PackageTags>rng random</PackageTags>
+    <PackageTags>rng random username</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageDescription>A random word generator for .NET and .NET Core</PackageDescription>
-    <PackageReleaseNotes>Added package prefix</PackageReleaseNotes>
+    <PackageReleaseNotes>Added random seed inputs - thanks michaldivis!</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
