@@ -95,8 +95,10 @@ upbeat salty soldier
 ```C#
 WordGenerator myWordGenerator = new WordGenerator(seed:123456);
 myWordGenerator.SetSeed(654321);
+```
 
 ### SetRandom( )
+```C#
 myWordGenerator.SetRandom(new Random(654321));
 string word = myWordGenerator.GetWord(PartOfSpeech.noun);
 ```
