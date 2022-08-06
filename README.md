@@ -91,22 +91,20 @@ successfully spherical scooter
 upbeat salty soldier
 ```
 
-### Provide seed
+### SetSeed( )
 ```C#
-WordGenerator.UseSeed(123456);
-WordGenerator myWordGenerator = new WordGenerator();
-string word = myWordGenerator.GetWord(PartOfSpeech.noun);
-```
+WordGenerator myWordGenerator = new WordGenerator(seed:123456);
+myWordGenerator.SetSeed(654321);
 
-### Provide random
-```C#
-WordGenerator.UseRandom(new Random());
-WordGenerator myWordGenerator = new WordGenerator();
+### SetRandom( )
+myWordGenerator.SetRandom(new Random(654321));
 string word = myWordGenerator.GetWord(PartOfSpeech.noun);
 ```
 
 ## Features
 ### Recently Added
+* v0.9.4 - SetSeed()
+* v0.9.4 - SetRandom()
 * v0.9.3 - package prefix
 * v0.9.2 - IsWord()
 #### Planned Features
