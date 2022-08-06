@@ -91,7 +91,7 @@ successfully spherical scooter
 upbeat salty soldier
 ```
 
-### SetSeed( )
+### SetSeed( ) - thanks [michaldivis](https://github.com/cryptic-wizard/random-word-generator/pull/27)!
 ```C#
 WordGenerator myWordGenerator = new WordGenerator(seed:123456);
 myWordGenerator.SetSeed(654321);
