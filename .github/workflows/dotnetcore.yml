@@ -11,15 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@v1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '3.1.x'
-    - uses: cryptic-wizard/run-specflow-tests@v1.2.0
+    - uses: cryptic-wizard/run-specflow-tests@v1.3.1
       with:
         test-assembly-path: RandomWordGeneratorTest/bin/Release/netcoreapp3.1
         test-assembly-dll: RandomWordGeneratorTest.dll
-        test-execution-json: TestExecution.json
         output-html: RandomWordGeneratorResults.html
         framework: netcoreapp3.1
         logger: trx
@@ -30,10 +29,3 @@ jobs:
         name: Specflow Tests
         path: RandomWordGeneratorResults.trx
         reporter: dotnet-trx
-    - if: success() || failure()
-      uses: actions/upload-artifact@v2
-      with:
-        name: RandomWordGeneratorTestResults
-        path: |
-          RandomWordGeneratorResults.html
-          RandomWordGeneratorResults.trx

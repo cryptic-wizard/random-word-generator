@@ -1,4 +1,4 @@
-name: .NET 5.0
+name: .NET 6.0
 on:
   push:
     #branches: [ main ]
@@ -11,17 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@v1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '5.0.x'
-    - uses: cryptic-wizard/run-specflow-tests@v1.2.0
+        dotnet-version: '6.0.x'
+    - uses: cryptic-wizard/run-specflow-tests@v1.3.1
       with:
-        test-assembly-path: RandomWordGeneratorTest/bin/Release/net5.0
+        test-assembly-path: RandomWordGeneratorTest/bin/Release/net6.0
         test-assembly-dll: RandomWordGeneratorTest.dll
-        test-execution-json: TestExecution.json
         output-html: RandomWordGeneratorResults.html
-        framework: net5.0
+        framework: net6.0
         logger: trx
         logger-file-name: ../../RandomWordGeneratorResults.trx
     - uses: dorny/test-reporter@v1
@@ -30,10 +29,3 @@ jobs:
         name: Specflow Tests
         path: RandomWordGeneratorResults.trx
         reporter: dotnet-trx
-    - if: success() || failure()
-      uses: actions/upload-artifact@v2
-      with:
-        name: RandomWordGeneratorTestResults
-        path: |
-          RandomWordGeneratorResults.html
-          RandomWordGeneratorResults.trx
