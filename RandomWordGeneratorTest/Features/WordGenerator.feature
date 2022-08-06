@@ -15,7 +15,7 @@ Scenario Outline: Word Lists Do Not Have Duplicate Words
 
 Scenario: Set Language
 	Given I set the language to EN
-	When I get a noun
+	When I get a 'noun'
 	Then I have a noun
 
 Scenario Outline: Get a Single Word
@@ -24,7 +24,7 @@ Scenario Outline: Get a Single Word
 	Then the return value is true
 
 Scenario Outline: Get a Single Word With Part Of Speech
-	When I get a <partOfSpeech>
+	When I get a '<partOfSpeech>'
 	Then I have a <partOfSpeech>
 
 	Examples:
@@ -46,8 +46,8 @@ Scenario Outline: Get Multiple Words
 	| 8 |
 
 Scenario Outline: Get Multiple Words With Part Of Speech
-	When I get <x> <partOfSpeech>
-	Then I have <x> <partOfSpeech>
+	When I get <x> '<partOfSpeech>'
+	Then I have <x> '<partOfSpeech>'
 
 	Examples:
 	| x | partOfSpeech |

@@ -52,7 +52,7 @@ namespace CrypticWizard.RandomWordGeneratorTest.Steps
             wordGeneratorFixture.word = wordGenerator.GetWord();
         }
 
-        [When("I get a (.*)")]
+        [When("I get a '(.*)'")]
         public void WhenIGetAWord(PartOfSpeech partOfSpeech)
         {
             wordGeneratorFixture.word = wordGenerator.GetWord(partOfSpeech);
@@ -64,7 +64,7 @@ namespace CrypticWizard.RandomWordGeneratorTest.Steps
             wordGeneratorFixture.words = wordGenerator.GetWords(quantity);
         }
 
-        [When("I get (\\d+) (.*)")]
+        [When("I get (\\d+) '(.*)'")]
         public void WhenIGetXWords(int quantity, PartOfSpeech partOfSpeech)
         {
             wordGeneratorFixture.words = wordGenerator.GetWords(partOfSpeech, quantity);
@@ -87,7 +87,7 @@ namespace CrypticWizard.RandomWordGeneratorTest.Steps
             Assert.True(wordGenerator.IsPartOfSpeech(wordGeneratorFixture.word, partOfSpeech), "Word = " + wordGeneratorFixture.word.ToString());
         }
 
-        [Then("I have (\\d+) (.*)")]
+        [Then("I have (\\d+) '(.*)'")]
         public void ThenIHaveXWords(int quantity, PartOfSpeech partOfSpeech)
         {
             Assert.IsNotNull(wordGeneratorFixture.words);

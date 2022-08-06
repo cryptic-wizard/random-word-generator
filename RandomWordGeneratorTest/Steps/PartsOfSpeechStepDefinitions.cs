@@ -29,7 +29,7 @@ namespace CrypticWizard.RandomWordGeneratorTest.Steps
             wordGeneratorFixture.partsOfSpeech = wordGenerator.GetPartsOfSpeech(word);
         }
 
-        [When(@"I check if (.*) is (.*)")]
+        [When(@"I check if (.*) is '(.*)'")]
         public void WhenICheckIfXIsY(string word, PartOfSpeech partOfSpeech)
         {
             wordGeneratorFixture.myBool = wordGenerator.IsPartOfSpeech(word, partOfSpeech);

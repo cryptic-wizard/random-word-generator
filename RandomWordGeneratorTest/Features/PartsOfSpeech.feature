@@ -19,7 +19,7 @@ Scenario Outline: Get Parts Of Speech
 	| run     | verb         |
 
 Scenario Outline: IsPartOfSpeech
-	When I check if <word> is <partOfSpeech>
+	When I check if <word> is '<partOfSpeech>'
 	Then the return value is <bool>
 
 	Examples:
