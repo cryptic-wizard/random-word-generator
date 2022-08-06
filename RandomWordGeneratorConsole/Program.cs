@@ -33,6 +33,9 @@ namespace CrypticWizard.RandomWordGeneratorConsole
             {
                 Console.WriteLine(s);
             }
+
+            wordGenerator = new WordGenerator(seed:123456);
+            wordGenerator.SetSeed(654321);
         }
     }
 }

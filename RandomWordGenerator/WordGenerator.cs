@@ -17,7 +17,7 @@ namespace CrypticWizard.RandomWordGenerator
 
 		// Private Members
 		private int totalWords = 0;
-		private static Random rnd = new Random();
+		private Random rnd = new Random();
 		private static List<PartOfSpeech> partsOfSpeech = Enum.GetValues(typeof(PartOfSpeech)).Cast<PartOfSpeech>().ToList();
         private Dictionary<PartOfSpeech, List<string>> wordDictionary;
 
@@ -41,17 +41,21 @@ namespace CrypticWizard.RandomWordGenerator
 		/// Creates a new WordGenerator
 		/// </summary>
 		/// <param name="language"></param>
-		public WordGenerator(Languages language = Languages.EN)
+		public WordGenerator(Languages language = Languages.EN, int? seed = null)
         {
 			Language = language;
-			wordDictionary = new Dictionary<PartOfSpeech, List<string>>();
+			if (seed != null)
+            {
+				rnd = new Random((int)seed);
+            }
 
+			wordDictionary = new Dictionary<PartOfSpeech, List<string>>();
 			foreach (PartOfSpeech partOfSpeech in partsOfSpeech)
 			{
 				wordDictionary.Add(partOfSpeech, LoadWords(partOfSpeech));
 				totalWords += wordDictionary[partOfSpeech].Count;
 			}
-        }
+		}
 
 		/// <summary>
 		/// Gets a list of possible parts of speech of a word
@@ -357,6 +361,24 @@ namespace CrypticWizard.RandomWordGenerator
 			{
 				wordDictionary.Add(partOfSpeech, LoadWords(partOfSpeech));
 			}
+		}
+
+		/// <summary>
+		/// Sets the seed used for initializing the randomizer
+		/// </summary>
+		/// <param name="seed">Random seed</param>
+		public void SetSeed(int seed)
+		{
+			rnd = new Random(seed);
+		}
+			
+		/// <summary>
+		/// Sets the random used by the word generator
+		/// </summary>
+		/// <param name="random">Random</param>
+		public void SetRandom(Random random)
+		{
+			rnd = random;
 		}
 	}
 }
